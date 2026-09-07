@@ -1,24 +1,19 @@
 """
-OKX Trend Scanner Bot (GitHub Actions edition) — v3
+OKX Trend Scanner Bot (GitHub Actions edition) — v4
 ------------------------------------------------------
-Ganti total metode filter dari versi sebelumnya (EMA/Supertrend/ADX/Ichimoku
-score) menjadi mengikuti cara riset manual kamu:
+Kriteria teknikal diperlonggar dari versi sebelumnya (yang mewajibkan cross
+sudah TERJADI persis di 1H, dan 4H/1D wajib "sehat" 45-70). Sekarang tiap
+timeframe dicek kondisi yang lebih longgar:
 
-1. TIMEFRAME ENTRY (1H): cari StochRSI %K cross up %D dari area oversold
-   -> ini "pemicu" sinyal, nandain momentum baru mulai belok naik.
-2. KONFIRMASI 4H: RSI & StochRSI belum overbought/overextended (masih ada
-   ruang naik), bias netral-ke-bullish.
-3. KONFIRMASI 1D: sama seperti 4H tapi di timeframe harian -> memastikan
-   trend besar juga tidak sedang jenuh beli.
-   Pair cuma lolos jadi kandidat kalau LOLOS KETIGANYA. Ini sengaja ketat
-   supaya yang lolos cuma sedikit pair yang benar teknikal, bukan yang
-   sudah "terbang tinggi".
-4. Untuk pair yang lolos, dihitung level Fibonacci retracement/extension
-   dari swing 4H sebagai REFERENSI Entry/TP/SL (bukan rekomendasi final —
-   tetap riset manual sebelum entry).
+- 1H (trigger)  : RSI oversold ATAU StochRSI mau crossing long (K mendekati D,
+                  sedang naik). Belum mensyaratkan cross sudah selesai, supaya
+                  bisa menangkap setup lebih awal.
+- 4H (konfirmasi): RSI oversold ATAU StochRSI mau crossing ATAU StochRSI SUDAH
+                  crossing long (K > D).
+- 1D (konfirmasi): sama seperti 4H.
 
-Optimisasi request: candle 4H & 1D cuma diambil untuk pair yang SUDAH lolos
-cross di 1H, jadi tidak perlu fetch 3x untuk semua ratusan pair.
+Pair jadi kandidat kalau KETIGA timeframe sama-sama menunjukkan salah satu
+kondisi bullish di atas.
 
 ENV VARS (GitHub Secrets):
 - TELEGRAM_TOKEN
@@ -36,7 +31,7 @@ import pandas as pd
 
 OKX_BASE_URL = "https://www.okx.com"
 
-ENTRY_BAR = "1H"     # timeframe pemicu sinyal (StochRSI cross)
+ENTRY_BAR = "1H"
 CONFIRM_BAR_1 = "4H"
 CONFIRM_BAR_2 = "1D"
 
@@ -50,13 +45,12 @@ RSI_LENGTH = 14
 STOCH_LENGTH = 14
 STOCH_K_SMOOTH = 3
 STOCH_D_SMOOTH = 3
-OVERSOLD = 20
-OVERBOUGHT = 80
-CROSS_LOOKBACK = 5          # cek "baru saja oversold" dalam N candle terakhir
-CONFIRM_RSI_MAX = 70        # di atas ini dianggap sudah terlalu jenuh beli
-CONFIRM_RSI_MIN = 45        # di bawah ini dianggap belum ada bias bullish
 
-FIB_LOOKBACK = 60           # jumlah candle 4H untuk cari swing high/low
+RSI_OVERSOLD = 35       # RSI di bawah ini dianggap oversold
+STOCH_OVERSOLD = 20     # StochRSI K di bawah ini dianggap oversold
+CROSS_PROXIMITY = 8     # selisih D-K <= ini dan K lagi naik -> dianggap "mau crossing"
+
+FIB_LOOKBACK = 60
 
 MAX_RESULTS_IN_MESSAGE = 10
 
@@ -125,7 +119,6 @@ def rsi(series: pd.Series, length: int = RSI_LENGTH) -> pd.Series:
 
 def stoch_rsi(close: pd.Series, rsi_length=RSI_LENGTH, stoch_length=STOCH_LENGTH,
               k_smooth=STOCH_K_SMOOTH, d_smooth=STOCH_D_SMOOTH):
-    """Return (rsi_series, k, d). K/D dalam skala 0-100."""
     rsi_series = rsi(close, rsi_length)
     min_rsi = rsi_series.rolling(stoch_length).min()
     max_rsi = rsi_series.rolling(stoch_length).max()
@@ -155,43 +148,50 @@ def fibonacci_levels(df: pd.DataFrame, lookback: int = FIB_LOOKBACK) -> dict:
 
 # ============================== SIGNAL LOGIC ==============================
 
-def entry_cross_signal(df: pd.DataFrame) -> dict:
-    """StochRSI %K cross up %D di candle terakhir, dan sempat oversold
-    dalam beberapa candle sebelumnya (bukan cross di tengah range)."""
-    _, k, d = stoch_rsi(df["close"])
-    if len(k) < CROSS_LOOKBACK + 2:
-        return {"ok": False}
-
-    crossed_up = k.iloc[-2] <= d.iloc[-2] and k.iloc[-1] > d.iloc[-1]
-    recently_oversold = (
-        k.iloc[-(CROSS_LOOKBACK + 1):-1].min() <= OVERSOLD
-        or d.iloc[-(CROSS_LOOKBACK + 1):-1].min() <= OVERSOLD
-    )
-    return {
-        "ok": bool(crossed_up and recently_oversold),
-        "k": round(float(k.iloc[-1]), 1),
-        "d": round(float(d.iloc[-1]), 1),
-    }
-
-
-def confirm_not_overextended(df: pd.DataFrame) -> dict:
-    """Cek RSI & StochRSI di timeframe lebih besar: belum jenuh beli,
-    tapi juga bukan bias bearish."""
+def classify_setup(df: pd.DataFrame, allow_already_crossed: bool) -> dict:
+    """Cek kondisi bullish pada satu timeframe:
+    - oversold: RSI <= RSI_OVERSOLD atau StochRSI K <= STOCH_OVERSOLD
+    - mau crossing: K < D tapi selisihnya tipis (<= CROSS_PROXIMITY) dan K sedang naik
+    - sudah crossing (opsional, tergantung timeframe): K > D
+    """
     rsi_series, k, d = stoch_rsi(df["close"])
+    if len(k) < 3:
+        return {"ok": False, "rsi": None, "k": None, "d": None, "reason": "data kurang"}
+
     rsi_now = float(rsi_series.iloc[-1])
-    k_now = float(k.iloc[-1])
-    ok = (CONFIRM_RSI_MIN <= rsi_now <= CONFIRM_RSI_MAX) and (k_now <= OVERBOUGHT)
-    return {"ok": ok, "rsi": round(rsi_now, 1), "k": round(k_now, 1), "d": round(float(d.iloc[-1]), 1)}
+    k_now, d_now = float(k.iloc[-1]), float(d.iloc[-1])
+    k_prev = float(k.iloc[-2])
+
+    oversold = (rsi_now <= RSI_OVERSOLD) or (k_now <= STOCH_OVERSOLD)
+    about_to_cross = (k_now < d_now) and ((d_now - k_now) <= CROSS_PROXIMITY) and (k_now > k_prev)
+    already_crossed = k_now > d_now
+
+    reasons = []
+    if oversold:
+        reasons.append("oversold")
+    if about_to_cross:
+        reasons.append("mau crossing")
+    if already_crossed and allow_already_crossed:
+        reasons.append("sudah crossing")
+
+    ok = oversold or about_to_cross or (already_crossed and allow_already_crossed)
+
+    return {
+        "ok": ok,
+        "rsi": round(rsi_now, 1),
+        "k": round(k_now, 1),
+        "d": round(d_now, 1),
+        "reason": " & ".join(reasons) if reasons else "belum ada sinyal",
+    }
 
 
 # ============================== SCAN ==============================
 
 def scan_instrument(inst_id: str):
-    """Return dict kandidat kalau lolos 1H trigger + 4H & 1D confirm, else None."""
     df_1h = fetch_candles(inst_id, ENTRY_BAR, CANDLE_LIMIT_ENTRY)
     if len(df_1h) < 60:
         return None
-    entry = entry_cross_signal(df_1h)
+    entry = classify_setup(df_1h, allow_already_crossed=False)
     if not entry["ok"]:
         return None
 
@@ -199,7 +199,7 @@ def scan_instrument(inst_id: str):
     df_4h = fetch_candles(inst_id, CONFIRM_BAR_1, CANDLE_LIMIT_CONFIRM)
     if len(df_4h) < 60:
         return None
-    confirm_4h = confirm_not_overextended(df_4h)
+    confirm_4h = classify_setup(df_4h, allow_already_crossed=True)
     if not confirm_4h["ok"]:
         return None
 
@@ -207,7 +207,7 @@ def scan_instrument(inst_id: str):
     df_1d = fetch_candles(inst_id, CONFIRM_BAR_2, CANDLE_LIMIT_CONFIRM)
     if len(df_1d) < 60:
         return None
-    confirm_1d = confirm_not_overextended(df_1d)
+    confirm_1d = classify_setup(df_1d, allow_already_crossed=True)
     if not confirm_1d["ok"]:
         return None
 
@@ -236,9 +236,9 @@ def format_candidate_block(c: dict) -> str:
     return (
         f"🟢 *{c['inst_id']}*\n"
         f"Harga sekarang: {c['price']:,.4f}\n"
-        f"1H StochRSI cross up dari oversold: K {c['entry_1h']['k']} / D {c['entry_1h']['d']} ✅\n"
-        f"4H konfirmasi: RSI {c['confirm_4h']['rsi']} | StochRSI K {c['confirm_4h']['k']}/D {c['confirm_4h']['d']}\n"
-        f"1D konfirmasi: RSI {c['confirm_1d']['rsi']} | StochRSI K {c['confirm_1d']['k']}/D {c['confirm_1d']['d']}\n"
+        f"1H: RSI {c['entry_1h']['rsi']} | StochRSI K {c['entry_1h']['k']}/D {c['entry_1h']['d']} — {c['entry_1h']['reason']}\n"
+        f"4H: RSI {c['confirm_4h']['rsi']} | StochRSI K {c['confirm_4h']['k']}/D {c['confirm_4h']['d']} — {c['confirm_4h']['reason']}\n"
+        f"1D: RSI {c['confirm_1d']['rsi']} | StochRSI K {c['confirm_1d']['k']}/D {c['confirm_1d']['d']} — {c['confirm_1d']['reason']}\n"
         f"Referensi Fibonacci (swing 4H):\n"
         f"  Entry ref: {c['price']:,.4f}\n"
         f"  SL ref: {sl_ref:,.4f}\n"
@@ -248,7 +248,7 @@ def format_candidate_block(c: dict) -> str:
 
 def format_message(candidates: list, total_scanned: int) -> list:
     header = (
-        f"📊 *OKX Entry Scan* — StochRSI cross (1H) + konfirmasi 4H & 1D\n"
+        f"📊 *OKX Entry Scan* — 1H trigger + konfirmasi 4H & 1D (oversold/mau crossing/sudah crossing)\n"
         f"Discan: {total_scanned} pair futures\n"
     )
 
@@ -270,7 +270,6 @@ def format_message(candidates: list, total_scanned: int) -> list:
     if len(text) <= max_len:
         return [text]
 
-    # pecah per blok kalau kepanjangan
     chunks, current = [], header + "\n"
     for block in blocks[1:]:
         if len(current) + len(block) + 2 > max_len:
