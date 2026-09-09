@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OKX Entry Scan</title>
+<style>
+  :root{
+    --bg:#0B0E11; --panel:#12151A; --border:#22262D;
+    --text:#E8E8E8; --muted:#8A8F98; --green:#3FBF6A; --green-soft:#12271B;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:'Segoe UI', Inter, sans-serif; padding:18px; max-width:720px; margin:0 auto;}
+  .header{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; flex-wrap:wrap; gap:8px;}
+  .title{font-size:19px; font-weight:700;}
+  .badge{background:#1B1F26; color:var(--muted); font-size:12px; padding:3px 10px; border-radius:100px; margin-left:8px;}
+  .meta{color:var(--muted); font-size:12.5px; margin-bottom:18px;}
+  .card{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:12px;}
+  .pair-name{font-size:16px; font-weight:700;}
+  .pair-price{color:var(--muted); font-size:12.5px; margin-top:2px; margin-bottom:10px;}
+  .tf-line{font-size:12.5px; color:var(--muted); margin-bottom:4px;}
+  .tf-line b{color:var(--text);}
+  .tf-line .reason{color:var(--green);}
+  .fib-block{margin-top:10px; padding-top:10px; border-top:1px dashed var(--border); font-size:12.5px;}
+  .fib-grid{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:6px; color:var(--muted);}
+  .fib-grid b{color:var(--text);}
+  .empty, .loading{text-align:center; color:var(--muted); padding:50px 10px; font-size:13.5px;}
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="title">📊 OKX Entry Scan <span class="badge" id="resultCount">-</span></div>
+  </div>
+  <div class="meta" id="lastUpdate">Memuat...</div>
+  <div id="results"><div class="loading">Memuat hasil scan terakhir...</div></div>
+
+<script>
+  function fmtNum(v, decimals=4){
+    if (v === null || v === undefined) return '-';
+    return Number(v).toLocaleString('en-US', {minimumFractionDigits: decimals, maximumFractionDigits: decimals});
+  }
+
+  function timeAgo(iso){
+    const diffMs = Date.now() - new Date(iso).getTime();
+    const mins = Math.floor(diffMs / 60000);
+    if (mins < 60) return `${mins} menit lalu`;
+    const hours = Math.floor(mins / 60);
+    if (hours < 24) return `${hours} jam lalu`;
+    return `${Math.floor(hours/24)} hari lalu`;
+  }
+
+  async function load(){
+    try{
+      const res = await fetch('./results.json?t=' + Date.now());
+      const data = await res.json();
+
+      document.getElementById('resultCount').textContent = data.candidates.length + ' hasil / ' + data.total_scanned + ' discan';
+      document.getElementById('lastUpdate').textContent = 'Update terakhir: ' + timeAgo(data.generated_at) + ' (' + new Date(data.generated_at).toLocaleString('id-ID') + ')';
+
+      const container = document.getElementById('results');
+      if (data.candidates.length === 0){
+        container.innerHTML = '<div class="empty">Tidak ada pair yang lolos filter saat scan terakhir.</div>';
+        return;
+      }
+
+      container.innerHTML = data.candidates.map(c => {
+        const fib = c.fib || {};
+        const slRef = c.price > fib['0.786'] ? fib['0.786'] : fib.swing_low;
+        return `
+        <div class="card">
+          <div class="pair-name">${c.inst_id.replace('-USDT-SWAP','/USDT')}</div>
+          <div class="pair-price">Harga: ${fmtNum(c.price)}</div>
+          <div class="tf-line">1H: RSI <b>${c.entry_1h.rsi}</b> | StochRSI K <b>${c.entry_1h.k}</b>/D <b>${c.entry_1h.d}</b> — <span class="reason">${c.entry_1h.reason}</span></div>
+          <div class="tf-line">4H: RSI <b>${c.confirm_4h.rsi}</b> | StochRSI K <b>${c.confirm_4h.k}</b>/D <b>${c.confirm_4h.d}</b> — <span class="reason">${c.confirm_4h.reason}</span></div>
+          <div class="tf-line">1D: RSI <b>${c.confirm_1d.rsi}</b> | StochRSI K <b>${c.confirm_1d.k}</b>/D <b>${c.confirm_1d.d}</b> — <span class="reason">${c.confirm_1d.reason}</span></div>
+          <div class="fib-block">
+            Referensi Fibonacci (swing 4H):
+            <div class="fib-grid">
+              <div>Entry ref: <b>${fmtNum(c.price)}</b></div>
+              <div>SL ref: <b>${fmtNum(slRef)}</b></div>
+              <div>TP1: <b>${fmtNum(fib.swing_high)}</b></div>
+              <div>TP2: <b>${fmtNum(fib['ext_1.272'])}</b></div>
+              <div>TP3: <b>${fmtNum(fib['ext_1.618'])}</b></div>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    }catch(e){
+      document.getElementById('results').innerHTML = '<div class="empty">Gagal memuat results.json: ' + e + '</div>';
+    }
+  }
+
+  load();
+</script>
+</body>
+</html>
