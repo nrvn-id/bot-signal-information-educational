@@ -1,19 +1,14 @@
 """
-OKX Trend Scanner Bot (GitHub Actions edition) — v4
+OKX Trend Scanner Bot (GitHub Actions edition) — v5
 ------------------------------------------------------
-Kriteria teknikal diperlonggar dari versi sebelumnya (yang mewajibkan cross
-sudah TERJADI persis di 1H, dan 4H/1D wajib "sehat" 45-70). Sekarang tiap
-timeframe dicek kondisi yang lebih longgar:
+Kriteria teknikal (sama seperti v4): tiap timeframe dicek RSI oversold /
+StochRSI mau crossing / (untuk 4H & 1D) sudah crossing long.
 
-- 1H (trigger)  : RSI oversold ATAU StochRSI mau crossing long (K mendekati D,
-                  sedang naik). Belum mensyaratkan cross sudah selesai, supaya
-                  bisa menangkap setup lebih awal.
-- 4H (konfirmasi): RSI oversold ATAU StochRSI mau crossing ATAU StochRSI SUDAH
-                  crossing long (K > D).
-- 1D (konfirmasi): sama seperti 4H.
-
-Pair jadi kandidat kalau KETIGA timeframe sama-sama menunjukkan salah satu
-kondisi bullish di atas.
+BARU di v5: selain kirim ke Telegram, hasil scan juga disimpan ke
+docs/results.json supaya bisa ditampilkan di web lewat GitHub Pages.
+Kenapa lewat GitHub, bukan diakses langsung dari device kamu: karena ISP
+kamu blokir akses ke OKX di level jaringan (SNI-block), sedangkan runner
+GitHub Actions tidak kena blokir itu.
 
 ENV VARS (GitHub Secrets):
 - TELEGRAM_TOKEN
@@ -21,7 +16,9 @@ ENV VARS (GitHub Secrets):
 """
 
 import os
+import json
 import time
+from datetime import datetime, timezone
 
 import requests
 import numpy as np
@@ -290,6 +287,18 @@ def send_telegram(message: str):
 
 # ============================== MAIN ==============================
 
+def save_results_json(candidates: list, scanned: int, path: str = "docs/results.json"):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    output = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "total_scanned": scanned,
+        "candidates": candidates,
+    }
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(output, f, indent=2, ensure_ascii=False)
+    print(f"Hasil disimpan ke {path}")
+
+
 def main():
     symbols = fetch_active_swap_instruments()
     print(f"Total pair futures USDT aktif di OKX: {len(symbols)}")
@@ -308,6 +317,8 @@ def main():
         time.sleep(REQUEST_DELAY_SEC)
 
     print(f"Berhasil discan: {scanned} / {len(symbols)} | Kandidat lolos: {len(candidates)}")
+
+    save_results_json(candidates, scanned)
 
     chunks = format_message(candidates, total_scanned=scanned)
     for chunk in chunks:
