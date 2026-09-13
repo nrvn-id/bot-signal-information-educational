@@ -1,389 +1,245 @@
 {
-  "generated_at": "2026-09-12T23:32:57.133682+00:00",
+  "generated_at": "2026-09-13T01:34:10.931426+00:00",
   "total_scanned": 464,
   "candidates": [
     {
-      "inst_id": "A-USDT-SWAP",
-      "price": 0.07796,
+      "inst_id": "APLD-USDT-SWAP",
+      "price": 26.79,
       "entry_1h": {
         "ok": true,
-        "rsi": 47.2,
-        "k": 10.1,
-        "d": 4.4,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 45.2,
-        "k": 84.2,
-        "d": 82.5,
-        "reason": "sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 54.9,
-        "k": 2.0,
-        "d": 14.4,
-        "reason": "oversold"
-      },
-      "fib": {
-        "swing_low": 0.07456,
-        "swing_high": 0.08543,
-        "0.236": 0.08286468000000001,
-        "0.382": 0.08127766,
-        "0.5": 0.07999500000000001,
-        "0.618": 0.07871234,
-        "0.786": 0.07688618,
-        "ext_1.272": 0.08838664,
-        "ext_1.618": 0.09214766
-      }
-    },
-    {
-      "inst_id": "AMD-USDT-SWAP",
-      "price": 516.32,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 49.6,
-        "k": 7.9,
-        "d": 5.8,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 60.7,
-        "k": 86.1,
-        "d": 82.4,
-        "reason": "sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 61.4,
-        "k": 77.5,
-        "d": 78.2,
-        "reason": "mau crossing"
-      },
-      "fib": {
-        "swing_low": 440.99,
-        "swing_high": 526.96,
-        "0.236": 506.67108,
-        "0.382": 494.11946,
-        "0.5": 483.975,
-        "0.618": 473.83054000000004,
-        "0.786": 459.38758,
-        "ext_1.272": 550.34384,
-        "ext_1.618": 580.08946
-      }
-    },
-    {
-      "inst_id": "ASTER-USDT-SWAP",
-      "price": 0.6841,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 46.1,
-        "k": 13.8,
-        "d": 15.2,
-        "reason": "oversold & mau crossing"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 34.8,
-        "k": 77.4,
-        "d": 75.6,
-        "reason": "oversold & sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 46.4,
-        "k": 0.0,
-        "d": 0.1,
-        "reason": "oversold"
-      },
-      "fib": {
-        "swing_low": 0.6711,
-        "swing_high": 0.8681,
-        "0.236": 0.821608,
-        "0.382": 0.7928459999999999,
-        "0.5": 0.7696000000000001,
-        "0.618": 0.746354,
-        "0.786": 0.713258,
-        "ext_1.272": 0.921684,
-        "ext_1.618": 0.989846
-      }
-    },
-    {
-      "inst_id": "AUCTION-USDT-SWAP",
-      "price": 3.392,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 65.7,
-        "k": 77.5,
-        "d": 79.8,
+        "rsi": 61.2,
+        "k": 78.9,
+        "d": 80.3,
         "reason": "mau crossing"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 57.3,
-        "k": 100.0,
-        "d": 99.6,
+        "rsi": 52.7,
+        "k": 97.2,
+        "d": 96.3,
         "reason": "sudah crossing"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 54.7,
-        "k": 25.1,
-        "d": 14.4,
+        "rsi": 47.0,
+        "k": 60.1,
+        "d": 59.8,
         "reason": "sudah crossing"
       },
       "fib": {
-        "swing_low": 3.186,
-        "swing_high": 3.573,
-        "0.236": 3.481668,
-        "0.382": 3.425166,
-        "0.5": 3.3795,
-        "0.618": 3.333834,
-        "0.786": 3.268818,
-        "ext_1.272": 3.678264,
-        "ext_1.618": 3.812166
+        "swing_low": 24.58,
+        "swing_high": 29.16,
+        "0.236": 28.07912,
+        "0.382": 27.41044,
+        "0.5": 26.869999999999997,
+        "0.618": 26.32956,
+        "0.786": 25.560119999999998,
+        "ext_1.272": 30.40576,
+        "ext_1.618": 31.99044
       }
     },
     {
-      "inst_id": "BCH-USDT-SWAP",
-      "price": 226.0,
+      "inst_id": "AR-USDT-SWAP",
+      "price": 2.566,
       "entry_1h": {
         "ok": true,
-        "rsi": 38.6,
-        "k": 14.8,
-        "d": 7.7,
+        "rsi": 36.8,
+        "k": 18.0,
+        "d": 23.3,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 34.2,
-        "k": 79.7,
-        "d": 87.0,
+        "rsi": 35.2,
+        "k": 17.3,
+        "d": 26.4,
         "reason": "oversold"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 41.5,
-        "k": 13.5,
-        "d": 14.4,
-        "reason": "oversold & mau crossing"
+        "rsi": 56.4,
+        "k": 14.1,
+        "d": 23.4,
+        "reason": "oversold"
       },
       "fib": {
-        "swing_low": 218.5,
-        "swing_high": 269.3,
-        "0.236": 257.3112,
-        "0.382": 249.89440000000002,
-        "0.5": 243.9,
-        "0.618": 237.9056,
-        "0.786": 229.3712,
-        "ext_1.272": 283.11760000000004,
-        "ext_1.618": 300.69440000000003
+        "swing_low": 2.432,
+        "swing_high": 3.152,
+        "0.236": 2.9820800000000003,
+        "0.382": 2.87696,
+        "0.5": 2.792,
+        "0.618": 2.70704,
+        "0.786": 2.58608,
+        "ext_1.272": 3.34784,
+        "ext_1.618": 3.59696
       }
     },
     {
       "inst_id": "EGLD-USDT-SWAP",
-      "price": 4.336,
+      "price": 4.278,
       "entry_1h": {
         "ok": true,
-        "rsi": 28.6,
-        "k": 6.9,
-        "d": 4.6,
+        "rsi": 26.2,
+        "k": 11.2,
+        "d": 12.6,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 36.4,
-        "k": 4.5,
-        "d": 9.4,
+        "rsi": 34.7,
+        "k": 0.2,
+        "d": 4.6,
         "reason": "oversold"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 56.2,
+        "rsi": 54.9,
         "k": 0.5,
         "d": 18.7,
         "reason": "oversold"
       },
       "fib": {
-        "swing_low": 4.317,
+        "swing_low": 4.252,
         "swing_high": 5.724,
-        "0.236": 5.391948,
-        "0.382": 5.186526000000001,
-        "0.5": 5.0205,
-        "0.618": 4.854474,
-        "0.786": 4.618098,
-        "ext_1.272": 6.106704000000001,
-        "ext_1.618": 6.593526000000001
+        "0.236": 5.376608,
+        "0.382": 5.161696,
+        "0.5": 4.9879999999999995,
+        "0.618": 4.814304,
+        "0.786": 4.5670079999999995,
+        "ext_1.272": 6.124384,
+        "ext_1.618": 6.6336960000000005
       }
     },
     {
-      "inst_id": "FLNC-USDT-SWAP",
-      "price": 9.96,
+      "inst_id": "EIGEN-USDT-SWAP",
+      "price": 0.2115,
       "entry_1h": {
         "ok": true,
-        "rsi": 49.6,
-        "k": 19.8,
-        "d": 9.9,
+        "rsi": 40.5,
+        "k": 3.2,
+        "d": 2.9,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 42.7,
-        "k": 89.9,
-        "d": 89.8,
+        "rsi": 48.2,
+        "k": 16.0,
+        "d": 41.7,
+        "reason": "oversold"
+      },
+      "confirm_1d": {
+        "ok": true,
+        "rsi": 52.8,
+        "k": 64.4,
+        "d": 58.6,
+        "reason": "sudah crossing"
+      },
+      "fib": {
+        "swing_low": 0.1912,
+        "swing_high": 0.2286,
+        "0.236": 0.2197736,
+        "0.382": 0.2143132,
+        "0.5": 0.2099,
+        "0.618": 0.2054868,
+        "0.786": 0.1992036,
+        "ext_1.272": 0.2387728,
+        "ext_1.618": 0.25171319999999997
+      }
+    },
+    {
+      "inst_id": "GEV-USDT-SWAP",
+      "price": 956.45,
+      "entry_1h": {
+        "ok": true,
+        "rsi": 56.1,
+        "k": 52.2,
+        "d": 54.8,
+        "reason": "mau crossing"
+      },
+      "confirm_4h": {
+        "ok": true,
+        "rsi": 56.8,
+        "k": 89.6,
+        "d": 89.2,
         "reason": "sudah crossing"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 37.3,
-        "k": 35.5,
-        "d": 34.1,
+        "rsi": 50.1,
+        "k": 87.6,
+        "d": 80.3,
         "reason": "sudah crossing"
       },
       "fib": {
-        "swing_low": 9.65,
-        "swing_high": 11.38,
-        "0.236": 10.971720000000001,
-        "0.382": 10.719140000000001,
-        "0.5": 10.515,
-        "0.618": 10.31086,
-        "0.786": 10.02022,
-        "ext_1.272": 11.850560000000002,
-        "ext_1.618": 12.449140000000002
+        "swing_low": 910.9,
+        "swing_high": 983.5,
+        "0.236": 966.3664,
+        "0.382": 955.7668,
+        "0.5": 947.2,
+        "0.618": 938.6332,
+        "0.786": 926.4363999999999,
+        "ext_1.272": 1003.2472,
+        "ext_1.618": 1028.3668
       }
     },
     {
       "inst_id": "GPS-USDT-SWAP",
-      "price": 0.009448,
+      "price": 0.009202,
       "entry_1h": {
         "ok": true,
-        "rsi": 25.5,
-        "k": 19.3,
-        "d": 39.5,
+        "rsi": 20.6,
+        "k": 0.0,
+        "d": 6.6,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 31.0,
-        "k": 2.5,
-        "d": 3.9,
+        "rsi": 28.8,
+        "k": 1.0,
+        "d": 2.6,
         "reason": "oversold"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 42.0,
+        "rsi": 40.9,
         "k": 12.4,
         "d": 41.0,
         "reason": "oversold"
       },
       "fib": {
-        "swing_low": 0.009312,
+        "swing_low": 0.009188,
         "swing_high": 0.012852,
-        "0.236": 0.01201656,
-        "0.382": 0.011499720000000001,
-        "0.5": 0.011082000000000002,
-        "0.618": 0.010664280000000002,
-        "0.786": 0.010069560000000002,
-        "ext_1.272": 0.01381488,
-        "ext_1.618": 0.01503972
-      }
-    },
-    {
-      "inst_id": "HPE-USDT-SWAP",
-      "price": 61.98,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 63.2,
-        "k": 0.7,
-        "d": 6.7,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 72.8,
-        "k": 92.7,
-        "d": 91.0,
-        "reason": "sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 70.8,
-        "k": 99.3,
-        "d": 97.5,
-        "reason": "sudah crossing"
-      },
-      "fib": {
-        "swing_low": 45.72,
-        "swing_high": 62.28,
-        "0.236": 58.37184,
-        "0.382": 55.95408,
-        "0.5": 54.0,
-        "0.618": 52.04592,
-        "0.786": 49.26384,
-        "ext_1.272": 66.78432000000001,
-        "ext_1.618": 72.51408
-      }
-    },
-    {
-      "inst_id": "INJ-USDT-SWAP",
-      "price": 5.969,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 50.8,
-        "k": 13.5,
-        "d": 32.2,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 52.3,
-        "k": 80.8,
-        "d": 76.2,
-        "reason": "sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 60.4,
-        "k": 61.5,
-        "d": 61.5,
-        "reason": "mau crossing"
-      },
-      "fib": {
-        "swing_low": 4.634,
-        "swing_high": 6.71,
-        "0.236": 6.220064,
-        "0.382": 5.916968,
-        "0.5": 5.672000000000001,
-        "0.618": 5.4270320000000005,
-        "0.786": 5.078264,
-        "ext_1.272": 7.274672,
-        "ext_1.618": 7.992967999999999
+        "0.236": 0.011987296,
+        "0.382": 0.011452352,
+        "0.5": 0.01102,
+        "0.618": 0.010587648,
+        "0.786": 0.009972096,
+        "ext_1.272": 0.013848608,
+        "ext_1.618": 0.015116352000000001
       }
     },
     {
       "inst_id": "KAT-USDT-SWAP",
-      "price": 0.004765,
+      "price": 0.004565,
       "entry_1h": {
         "ok": true,
-        "rsi": 38.4,
-        "k": 1.6,
-        "d": 4.9,
+        "rsi": 24.2,
+        "k": 0.0,
+        "d": 0.5,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 44.0,
-        "k": 17.1,
-        "d": 32.9,
+        "rsi": 38.9,
+        "k": 1.5,
+        "d": 17.6,
         "reason": "oversold"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 51.0,
-        "k": 20.0,
-        "d": 32.2,
+        "rsi": 47.2,
+        "k": 16.1,
+        "d": 30.9,
         "reason": "oversold"
       },
       "fib": {
@@ -399,97 +255,25 @@
       }
     },
     {
-      "inst_id": "MANA-USDT-SWAP",
-      "price": 0.07327,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 55.4,
-        "k": 4.2,
-        "d": 6.6,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 51.6,
-        "k": 99.8,
-        "d": 99.4,
-        "reason": "sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 51.6,
-        "k": 22.7,
-        "d": 16.8,
-        "reason": "sudah crossing"
-      },
-      "fib": {
-        "swing_low": 0.06958,
-        "swing_high": 0.07756,
-        "0.236": 0.07567672,
-        "0.382": 0.07451164,
-        "0.5": 0.07357,
-        "0.618": 0.07262836,
-        "0.786": 0.07128772,
-        "ext_1.272": 0.07973056,
-        "ext_1.618": 0.08249164
-      }
-    },
-    {
-      "inst_id": "MINIMAX-USDT-SWAP",
-      "price": 33.11,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 43.4,
-        "k": 84.0,
-        "d": 84.7,
-        "reason": "mau crossing"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 17.1,
-        "k": 78.0,
-        "d": 55.7,
-        "reason": "oversold & sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 34.4,
-        "k": 0.4,
-        "d": 0.7,
-        "reason": "oversold & mau crossing"
-      },
-      "fib": {
-        "swing_low": 32.73,
-        "swing_high": 50.32,
-        "0.236": 46.16876,
-        "0.382": 43.60062,
-        "0.5": 41.525,
-        "0.618": 39.44938,
-        "0.786": 36.49426,
-        "ext_1.272": 55.10448,
-        "ext_1.618": 61.19062
-      }
-    },
-    {
       "inst_id": "MORPHO-USDT-SWAP",
-      "price": 2.2107,
+      "price": 2.208,
       "entry_1h": {
         "ok": true,
-        "rsi": 32.3,
-        "k": 9.7,
-        "d": 15.4,
+        "rsi": 32.6,
+        "k": 20.0,
+        "d": 15.9,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 33.7,
-        "k": 21.7,
-        "d": 39.0,
+        "rsi": 33.4,
+        "k": 4.4,
+        "d": 22.0,
         "reason": "oversold"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 42.7,
+        "rsi": 42.6,
         "k": 7.7,
         "d": 7.7,
         "reason": "oversold"
@@ -507,133 +291,25 @@
       }
     },
     {
-      "inst_id": "MU-USDT-SWAP",
-      "price": 968.08,
+      "inst_id": "NVDA-USDT-SWAP",
+      "price": 218.11,
       "entry_1h": {
         "ok": true,
-        "rsi": 34.2,
-        "k": 13.2,
-        "d": 7.9,
+        "rsi": 32.5,
+        "k": 11.3,
+        "d": 13.1,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 34.7,
-        "k": 25.4,
-        "d": 26.6,
+        "rsi": 28.6,
+        "k": 79.3,
+        "d": 88.8,
         "reason": "oversold"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 49.7,
-        "k": 6.6,
-        "d": 21.0,
-        "reason": "oversold"
-      },
-      "fib": {
-        "swing_low": 920.9,
-        "swing_high": 1057.86,
-        "0.236": 1025.5374399999998,
-        "0.382": 1005.5412799999999,
-        "0.5": 989.3799999999999,
-        "0.618": 973.21872,
-        "0.786": 950.20944,
-        "ext_1.272": 1095.11312,
-        "ext_1.618": 1142.50128
-      }
-    },
-    {
-      "inst_id": "MUU-USDT-SWAP",
-      "price": 30.94,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 34.0,
-        "k": 13.7,
-        "d": 7.7,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 34.1,
-        "k": 24.2,
-        "d": 25.3,
-        "reason": "oversold"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 33.7,
-        "k": 55.5,
-        "d": 63.1,
-        "reason": "oversold"
-      },
-      "fib": {
-        "swing_low": 28.26,
-        "swing_high": 37.09,
-        "0.236": 35.00612,
-        "0.382": 33.71694,
-        "0.5": 32.675000000000004,
-        "0.618": 31.63306,
-        "0.786": 30.149620000000002,
-        "ext_1.272": 39.491760000000006,
-        "ext_1.618": 42.546940000000006
-      }
-    },
-    {
-      "inst_id": "NFLX-USDT-SWAP",
-      "price": 77.28,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 57.6,
-        "k": 33.0,
-        "d": 34.2,
-        "reason": "mau crossing"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 52.2,
-        "k": 86.6,
-        "d": 83.0,
-        "reason": "sudah crossing"
       },
       "confirm_1d": {
         "ok": true,
         "rsi": 44.6,
-        "k": 19.5,
-        "d": 12.0,
-        "reason": "oversold & sudah crossing"
-      },
-      "fib": {
-        "swing_low": 75.17,
-        "swing_high": 83.62,
-        "0.236": 81.6258,
-        "0.382": 80.3921,
-        "0.5": 79.39500000000001,
-        "0.618": 78.3979,
-        "0.786": 76.9783,
-        "ext_1.272": 85.9184,
-        "ext_1.618": 88.8421
-      }
-    },
-    {
-      "inst_id": "NVDA-USDT-SWAP",
-      "price": 218.66,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 39.9,
-        "k": 16.3,
-        "d": 8.4,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 30.6,
-        "k": 90.5,
-        "d": 95.6,
-        "reason": "oversold"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 45.4,
         "k": 3.0,
         "d": 3.4,
         "reason": "oversold"
@@ -651,135 +327,63 @@
       }
     },
     {
-      "inst_id": "OPG-USDT-SWAP",
-      "price": 0.10409,
+      "inst_id": "PLTR-USDT-SWAP",
+      "price": 167.91,
       "entry_1h": {
         "ok": true,
-        "rsi": 56.2,
-        "k": 16.6,
-        "d": 15.3,
-        "reason": "oversold"
+        "rsi": 52.3,
+        "k": 25.5,
+        "d": 30.4,
+        "reason": "mau crossing"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 58.2,
-        "k": 95.8,
-        "d": 95.5,
+        "rsi": 41.5,
+        "k": 95.9,
+        "d": 95.8,
         "reason": "sudah crossing"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 56.9,
-        "k": 81.8,
-        "d": 71.3,
-        "reason": "sudah crossing"
+        "rsi": 45.0,
+        "k": 4.4,
+        "d": 3.3,
+        "reason": "oversold & sudah crossing"
       },
       "fib": {
-        "swing_low": 0.09435,
-        "swing_high": 0.10725,
-        "0.236": 0.1042056,
-        "0.382": 0.1023222,
-        "0.5": 0.1008,
-        "0.618": 0.0992778,
-        "0.786": 0.0971106,
-        "ext_1.272": 0.11075879999999999,
-        "ext_1.618": 0.1152222
-      }
-    },
-    {
-      "inst_id": "PENGU-USDT-SWAP",
-      "price": 0.007229,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 40.4,
-        "k": 0.2,
-        "d": 4.3,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 31.0,
-        "k": 70.3,
-        "d": 81.8,
-        "reason": "oversold"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 40.7,
-        "k": 0.0,
-        "d": 0.0,
-        "reason": "oversold"
-      },
-      "fib": {
-        "swing_low": 0.007151,
-        "swing_high": 0.009011,
-        "0.236": 0.00857204,
-        "0.382": 0.00830048,
-        "0.5": 0.008081,
-        "0.618": 0.00786152,
-        "0.786": 0.00754904,
-        "ext_1.272": 0.00951692,
-        "ext_1.618": 0.01016048
-      }
-    },
-    {
-      "inst_id": "POET-USDT-SWAP",
-      "price": 7.881,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 47.6,
-        "k": 16.1,
-        "d": 23.0,
-        "reason": "oversold & mau crossing"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 47.4,
-        "k": 72.3,
-        "d": 72.6,
-        "reason": "mau crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 47.6,
-        "k": 63.5,
-        "d": 64.7,
-        "reason": "mau crossing"
-      },
-      "fib": {
-        "swing_low": 7.122,
-        "swing_high": 8.765,
-        "0.236": 8.377252,
-        "0.382": 8.137374000000001,
-        "0.5": 7.9435,
-        "0.618": 7.749626,
-        "0.786": 7.473602,
-        "ext_1.272": 9.211896000000001,
-        "ext_1.618": 9.780374000000002
+        "swing_low": 164.74,
+        "swing_high": 185.73,
+        "0.236": 180.77635999999998,
+        "0.382": 177.71182,
+        "0.5": 175.235,
+        "0.618": 172.75818,
+        "0.786": 169.23186,
+        "ext_1.272": 191.43928,
+        "ext_1.618": 198.70181999999997
       }
     },
     {
       "inst_id": "RAVE-USDT-SWAP",
-      "price": 0.1974,
+      "price": 0.1958,
       "entry_1h": {
         "ok": true,
-        "rsi": 33.8,
-        "k": 39.1,
-        "d": 30.4,
+        "rsi": 32.6,
+        "k": 59.8,
+        "d": 58.3,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 33.4,
-        "k": 46.0,
-        "d": 53.6,
+        "rsi": 33.3,
+        "k": 40.6,
+        "d": 47.6,
         "reason": "oversold"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 26.2,
-        "k": 18.1,
-        "d": 14.0,
+        "rsi": 25.9,
+        "k": 17.4,
+        "d": 13.8,
         "reason": "oversold & sudah crossing"
       },
       "fib": {
@@ -796,24 +400,24 @@
     },
     {
       "inst_id": "RIVER-USDT-SWAP",
-      "price": 1.402,
+      "price": 1.32,
       "entry_1h": {
         "ok": true,
-        "rsi": 57.9,
-        "k": 45.8,
-        "d": 51.2,
-        "reason": "mau crossing"
+        "rsi": 48.2,
+        "k": 18.7,
+        "d": 31.7,
+        "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 60.5,
-        "k": 73.2,
-        "d": 70.0,
+        "rsi": 54.2,
+        "k": 73.6,
+        "d": 72.4,
         "reason": "sudah crossing"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 40.7,
+        "rsi": 37.5,
         "k": 100.0,
         "d": 77.3,
         "reason": "sudah crossing"
@@ -832,24 +436,24 @@
     },
     {
       "inst_id": "ROBO-USDT-SWAP",
-      "price": 0.00916,
+      "price": 0.00909,
       "entry_1h": {
         "ok": true,
-        "rsi": 37.3,
-        "k": 14.4,
-        "d": 18.2,
+        "rsi": 34.3,
+        "k": 33.9,
+        "d": 31.2,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 28.6,
-        "k": 62.6,
-        "d": 72.9,
+        "rsi": 27.4,
+        "k": 51.4,
+        "d": 63.4,
         "reason": "oversold"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 30.1,
+        "rsi": 29.8,
         "k": 0.0,
         "d": 0.0,
         "reason": "oversold"
@@ -867,135 +471,99 @@
       }
     },
     {
-      "inst_id": "RVN-USDT-SWAP",
-      "price": 0.002194,
+      "inst_id": "SAHARA-USDT-SWAP",
+      "price": 0.008987,
       "entry_1h": {
         "ok": true,
-        "rsi": 39.1,
-        "k": 18.9,
-        "d": 16.0,
+        "rsi": 40.2,
+        "k": 15.5,
+        "d": 14.5,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 18.4,
-        "k": 77.8,
-        "d": 58.8,
-        "reason": "oversold & sudah crossing"
+        "rsi": 42.3,
+        "k": 3.6,
+        "d": 9.5,
+        "reason": "oversold"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 24.3,
-        "k": 0.0,
-        "d": 5.9,
+        "rsi": 51.3,
+        "k": 19.2,
+        "d": 35.9,
         "reason": "oversold"
       },
       "fib": {
-        "swing_low": 0.00217,
-        "swing_high": 0.003158,
-        "0.236": 0.002924832,
-        "0.382": 0.002780584,
-        "0.5": 0.002664,
-        "0.618": 0.0025474160000000003,
-        "0.786": 0.002381432,
-        "ext_1.272": 0.003426736,
-        "ext_1.618": 0.003768584
+        "swing_low": 0.00866,
+        "swing_high": 0.011133,
+        "0.236": 0.010549372,
+        "0.382": 0.010188314,
+        "0.5": 0.009896499999999999,
+        "0.618": 0.009604686,
+        "0.786": 0.009189222,
+        "ext_1.272": 0.011805656000000001,
+        "ext_1.618": 0.012661314000000002
       }
     },
     {
-      "inst_id": "SNDK-USDT-SWAP",
-      "price": 1626.25,
+      "inst_id": "TRUMP-USDT-SWAP",
+      "price": 1.983,
       "entry_1h": {
+        "ok": true,
+        "rsi": 45.0,
+        "k": 6.3,
+        "d": 5.4,
+        "reason": "oversold"
+      },
+      "confirm_4h": {
         "ok": true,
         "rsi": 34.9,
-        "k": 19.7,
-        "d": 11.3,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 32.3,
-        "k": 1.8,
-        "d": 2.7,
+        "k": 82.1,
+        "d": 89.1,
         "reason": "oversold"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 50.9,
-        "k": 10.8,
-        "d": 29.1,
-        "reason": "oversold"
+        "rsi": 45.1,
+        "k": 2.5,
+        "d": 1.5,
+        "reason": "oversold & sudah crossing"
       },
       "fib": {
-        "swing_low": 1514.5,
-        "swing_high": 1821.8,
-        "0.236": 1749.2772,
-        "0.382": 1704.4114,
-        "0.5": 1668.15,
-        "0.618": 1631.8886,
-        "0.786": 1580.2622,
-        "ext_1.272": 1905.3856,
-        "ext_1.618": 2011.7114
-      }
-    },
-    {
-      "inst_id": "TRUST-USDT-SWAP",
-      "price": 0.05769,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 53.8,
-        "k": 10.8,
-        "d": 15.5,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 55.2,
-        "k": 88.6,
-        "d": 86.4,
-        "reason": "sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 60.2,
-        "k": 60.0,
-        "d": 61.0,
-        "reason": "mau crossing"
-      },
-      "fib": {
-        "swing_low": 0.05172,
-        "swing_high": 0.0599,
-        "0.236": 0.057969520000000004,
-        "0.382": 0.056775240000000005,
-        "0.5": 0.05581,
-        "0.618": 0.05484476,
-        "0.786": 0.05347052,
-        "ext_1.272": 0.06212496,
-        "ext_1.618": 0.06495524
+        "swing_low": 1.904,
+        "swing_high": 2.516,
+        "0.236": 2.371568,
+        "0.382": 2.282216,
+        "0.5": 2.21,
+        "0.618": 2.137784,
+        "0.786": 2.034968,
+        "ext_1.272": 2.682464,
+        "ext_1.618": 2.894216
       }
     },
     {
       "inst_id": "UB-USDT-SWAP",
-      "price": 0.11982,
+      "price": 0.11994,
       "entry_1h": {
         "ok": true,
-        "rsi": 32.7,
-        "k": 30.1,
-        "d": 30.2,
+        "rsi": 33.3,
+        "k": 19.9,
+        "d": 26.9,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 38.2,
-        "k": 0.0,
-        "d": 5.8,
+        "rsi": 38.5,
+        "k": 0.4,
+        "d": 0.9,
         "reason": "oversold"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 45.5,
-        "k": 19.0,
-        "d": 29.7,
+        "rsi": 45.6,
+        "k": 19.2,
+        "d": 29.8,
         "reason": "oversold"
       },
       "fib": {
@@ -1011,277 +579,61 @@
       }
     },
     {
-      "inst_id": "UP-USDT-SWAP",
-      "price": 0.3294,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 32.2,
-        "k": 92.7,
-        "d": 84.3,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 26.0,
-        "k": 18.5,
-        "d": 14.0,
-        "reason": "oversold & sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 31.7,
-        "k": 0.0,
-        "d": 0.0,
-        "reason": "oversold"
-      },
-      "fib": {
-        "swing_low": 0.312,
-        "swing_high": 0.5206,
-        "0.236": 0.47137039999999997,
-        "0.382": 0.44091479999999994,
-        "0.5": 0.4163,
-        "0.618": 0.39168519999999996,
-        "0.786": 0.35664039999999997,
-        "ext_1.272": 0.5773391999999999,
-        "ext_1.618": 0.6495148
-      }
-    },
-    {
-      "inst_id": "USAR-USDT-SWAP",
-      "price": 15.69,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 40.3,
-        "k": 21.8,
-        "d": 23.2,
-        "reason": "mau crossing"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 26.2,
-        "k": 39.8,
-        "d": 33.7,
-        "reason": "oversold & sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 33.3,
-        "k": 0.0,
-        "d": 0.0,
-        "reason": "oversold"
-      },
-      "fib": {
-        "swing_low": 15.52,
-        "swing_high": 19.31,
-        "0.236": 18.41556,
-        "0.382": 17.86222,
-        "0.5": 17.415,
-        "0.618": 16.967779999999998,
-        "0.786": 16.33106,
-        "ext_1.272": 20.34088,
-        "ext_1.618": 21.65222
-      }
-    },
-    {
       "inst_id": "VIRTUAL-USDT-SWAP",
-      "price": 0.6199,
+      "price": 0.6152,
       "entry_1h": {
         "ok": true,
-        "rsi": 35.0,
-        "k": 7.9,
-        "d": 3.8,
+        "rsi": 30.9,
+        "k": 13.0,
+        "d": 10.9,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 32.1,
-        "k": 56.5,
-        "d": 75.1,
+        "rsi": 30.5,
+        "k": 35.6,
+        "d": 55.9,
         "reason": "oversold"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 43.0,
+        "rsi": 42.4,
         "k": 0.8,
         "d": 2.2,
         "reason": "oversold"
       },
       "fib": {
-        "swing_low": 0.6152,
+        "swing_low": 0.6142,
         "swing_high": 0.7584,
-        "0.236": 0.7246047999999999,
-        "0.382": 0.7036975999999999,
-        "0.5": 0.6868,
-        "0.618": 0.6699024,
-        "0.786": 0.6458448,
-        "ext_1.272": 0.7973504,
-        "ext_1.618": 0.8468975999999999
-      }
-    },
-    {
-      "inst_id": "WAL-USDT-SWAP",
-      "price": 0.02753,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 55.4,
-        "k": 2.4,
-        "d": 4.6,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 55.1,
-        "k": 87.7,
-        "d": 86.2,
-        "reason": "sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 58.0,
-        "k": 48.6,
-        "d": 44.3,
-        "reason": "sudah crossing"
-      },
-      "fib": {
-        "swing_low": 0.02454,
-        "swing_high": 0.02946,
-        "0.236": 0.02829888,
-        "0.382": 0.02758056,
-        "0.5": 0.027,
-        "0.618": 0.02641944,
-        "0.786": 0.02559288,
-        "ext_1.272": 0.03079824,
-        "ext_1.618": 0.03250056
-      }
-    },
-    {
-      "inst_id": "WOO-USDT-SWAP",
-      "price": 0.01138,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 59.6,
-        "k": 19.6,
-        "d": 20.5,
-        "reason": "oversold & mau crossing"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 54.9,
-        "k": 97.3,
-        "d": 97.6,
-        "reason": "mau crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 49.4,
-        "k": 28.3,
-        "d": 18.8,
-        "reason": "sudah crossing"
-      },
-      "fib": {
-        "swing_low": 0.00843,
-        "swing_high": 0.01503,
-        "0.236": 0.0134724,
-        "0.382": 0.0125088,
-        "0.5": 0.01173,
-        "0.618": 0.010951200000000001,
-        "0.786": 0.0098424,
-        "ext_1.272": 0.0168252,
-        "ext_1.618": 0.0191088
-      }
-    },
-    {
-      "inst_id": "XAG-USDT-SWAP",
-      "price": 64.54,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 48.1,
-        "k": 7.7,
-        "d": 7.7,
-        "reason": "oversold & mau crossing"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 43.1,
-        "k": 96.2,
-        "d": 80.7,
-        "reason": "sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 44.2,
-        "k": 6.1,
-        "d": 9.2,
-        "reason": "oversold & mau crossing"
-      },
-      "fib": {
-        "swing_low": 63.05,
-        "swing_high": 68.35,
-        "0.236": 67.0992,
-        "0.382": 66.3254,
-        "0.5": 65.69999999999999,
-        "0.618": 65.07459999999999,
-        "0.786": 64.18419999999999,
-        "ext_1.272": 69.79159999999999,
-        "ext_1.618": 71.6254
-      }
-    },
-    {
-      "inst_id": "XCU-USDT-SWAP",
-      "price": 6.5132,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 37.1,
-        "k": 8.5,
-        "d": 35.5,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 33.2,
-        "k": 65.3,
-        "d": 51.2,
-        "reason": "oversold & sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 39.4,
-        "k": 0.2,
-        "d": 11.3,
-        "reason": "oversold"
-      },
-      "fib": {
-        "swing_low": 6.4759,
-        "swing_high": 6.9067,
-        "0.236": 6.8050312,
-        "0.382": 6.7421344,
-        "0.5": 6.6913,
-        "0.618": 6.6404656,
-        "0.786": 6.5680912000000005,
-        "ext_1.272": 7.0238776,
-        "ext_1.618": 7.1729344
+        "0.236": 0.7243687999999999,
+        "0.382": 0.7033155999999999,
+        "0.5": 0.6862999999999999,
+        "0.618": 0.6692844,
+        "0.786": 0.6450587999999999,
+        "ext_1.272": 0.7976224,
+        "ext_1.618": 0.8475155999999999
       }
     },
     {
       "inst_id": "XPL-USDT-SWAP",
-      "price": 0.08001,
+      "price": 0.07962,
       "entry_1h": {
         "ok": true,
-        "rsi": 34.8,
-        "k": 32.2,
-        "d": 24.5,
+        "rsi": 32.9,
+        "k": 38.2,
+        "d": 35.1,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 34.9,
-        "k": 33.7,
-        "d": 50.9,
+        "rsi": 34.3,
+        "k": 22.9,
+        "d": 34.0,
         "reason": "oversold"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 42.3,
+        "rsi": 41.9,
         "k": 0.0,
         "d": 10.2,
         "reason": "oversold"
@@ -1300,168 +652,60 @@
     },
     {
       "inst_id": "XPT-USDT-SWAP",
-      "price": 1795.9,
+      "price": 1794.5,
       "entry_1h": {
         "ok": true,
-        "rsi": 41.7,
-        "k": 13.8,
-        "d": 8.2,
+        "rsi": 39.8,
+        "k": 8.8,
+        "d": 11.1,
         "reason": "oversold"
       },
       "confirm_4h": {
-        "ok": true,
-        "rsi": 41.7,
-        "k": 80.0,
-        "d": 63.3,
-        "reason": "sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 47.7,
-        "k": 13.7,
-        "d": 25.0,
-        "reason": "oversold"
-      },
-      "fib": {
-        "swing_low": 1761.0,
-        "swing_high": 1930.7,
-        "0.236": 1890.6508000000001,
-        "0.382": 1865.8746,
-        "0.5": 1845.85,
-        "0.618": 1825.8254,
-        "0.786": 1797.3158,
-        "ext_1.272": 1976.8584,
-        "ext_1.618": 2035.5746000000001
-      }
-    },
-    {
-      "inst_id": "YB-USDT-SWAP",
-      "price": 0.08599,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 43.7,
-        "k": 37.5,
-        "d": 37.9,
-        "reason": "mau crossing"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 31.5,
-        "k": 39.6,
-        "d": 45.3,
-        "reason": "oversold"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 44.6,
-        "k": 0.2,
-        "d": 3.9,
-        "reason": "oversold & mau crossing"
-      },
-      "fib": {
-        "swing_low": 0.0847,
-        "swing_high": 0.111,
-        "0.236": 0.1047932,
-        "0.382": 0.1009534,
-        "0.5": 0.09784999999999999,
-        "0.618": 0.0947466,
-        "0.786": 0.0903282,
-        "ext_1.272": 0.1181536,
-        "ext_1.618": 0.12725340000000002
-      }
-    },
-    {
-      "inst_id": "ZBT-USDT-SWAP",
-      "price": 0.08026,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 54.6,
-        "k": 19.8,
-        "d": 35.5,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 49.8,
-        "k": 93.7,
-        "d": 93.4,
-        "reason": "sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 43.7,
-        "k": 35.9,
-        "d": 26.6,
-        "reason": "sudah crossing"
-      },
-      "fib": {
-        "swing_low": 0.07429,
-        "swing_high": 0.08891,
-        "0.236": 0.08545968,
-        "0.382": 0.08332516,
-        "0.5": 0.0816,
-        "0.618": 0.07987484,
-        "0.786": 0.07741867999999999,
-        "ext_1.272": 0.09288664,
-        "ext_1.618": 0.09794516
-      }
-    },
-    {
-      "inst_id": "ZEC-USDT-SWAP",
-      "price": 1123.76,
-      "entry_1h": {
         "ok": true,
         "rsi": 41.2,
-        "k": 14.6,
-        "d": 11.4,
-        "reason": "oversold"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 46.2,
-        "k": 53.0,
-        "d": 52.9,
+        "k": 78.2,
+        "d": 74.1,
         "reason": "sudah crossing"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 67.1,
-        "k": 13.3,
-        "d": 29.5,
+        "rsi": 47.5,
+        "k": 13.4,
+        "d": 24.9,
         "reason": "oversold"
       },
       "fib": {
-        "swing_low": 805.0,
-        "swing_high": 1299.0,
-        "0.236": 1182.416,
-        "0.382": 1110.292,
-        "0.5": 1052.0,
-        "0.618": 993.7080000000001,
-        "0.786": 910.716,
-        "ext_1.272": 1433.368,
-        "ext_1.618": 1604.292
+        "swing_low": 1764.6,
+        "swing_high": 1930.7,
+        "0.236": 1891.5004,
+        "0.382": 1867.2498,
+        "0.5": 1847.65,
+        "0.618": 1828.0502,
+        "0.786": 1800.1453999999999,
+        "ext_1.272": 1975.8792,
+        "ext_1.618": 2033.3498000000002
       }
     },
     {
       "inst_id": "ZEN-USDT-SWAP",
-      "price": 6.252,
+      "price": 6.294,
       "entry_1h": {
         "ok": true,
-        "rsi": 27.5,
-        "k": 0.0,
-        "d": 0.0,
+        "rsi": 34.3,
+        "k": 28.8,
+        "d": 13.8,
         "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 32.7,
-        "k": 0.0,
-        "d": 5.3,
-        "reason": "oversold"
+        "rsi": 34.9,
+        "k": 7.0,
+        "d": 4.8,
+        "reason": "oversold & sudah crossing"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 55.2,
+        "rsi": 55.8,
         "k": 0.0,
         "d": 12.7,
         "reason": "oversold"
@@ -1479,75 +723,39 @@
       }
     },
     {
-      "inst_id": "ZIL-USDT-SWAP",
-      "price": 0.002723,
+      "inst_id": "ZHIPU-USDT-SWAP",
+      "price": 95.59,
       "entry_1h": {
         "ok": true,
-        "rsi": 51.1,
-        "k": 15.1,
-        "d": 17.0,
-        "reason": "oversold & mau crossing"
+        "rsi": 34.7,
+        "k": 36.8,
+        "d": 43.2,
+        "reason": "oversold"
       },
       "confirm_4h": {
         "ok": true,
-        "rsi": 46.4,
-        "k": 92.9,
-        "d": 92.6,
-        "reason": "sudah crossing"
+        "rsi": 19.7,
+        "k": 86.4,
+        "d": 82.0,
+        "reason": "oversold & sudah crossing"
       },
       "confirm_1d": {
         "ok": true,
-        "rsi": 51.1,
-        "k": 12.7,
-        "d": 14.2,
-        "reason": "oversold & mau crossing"
+        "rsi": 28.0,
+        "k": 0.0,
+        "d": 0.0,
+        "reason": "oversold"
       },
       "fib": {
-        "swing_low": 0.002584,
-        "swing_high": 0.003188,
-        "0.236": 0.0030454559999999998,
-        "0.382": 0.002957272,
-        "0.5": 0.0028859999999999997,
-        "0.618": 0.002814728,
-        "0.786": 0.002713256,
-        "ext_1.272": 0.0033522879999999997,
-        "ext_1.618": 0.003561272
-      }
-    },
-    {
-      "inst_id": "ZRX-USDT-SWAP",
-      "price": 0.10901,
-      "entry_1h": {
-        "ok": true,
-        "rsi": 66.6,
-        "k": 33.8,
-        "d": 34.3,
-        "reason": "mau crossing"
-      },
-      "confirm_4h": {
-        "ok": true,
-        "rsi": 67.2,
-        "k": 100.0,
-        "d": 99.2,
-        "reason": "sudah crossing"
-      },
-      "confirm_1d": {
-        "ok": true,
-        "rsi": 65.0,
-        "k": 44.2,
-        "d": 32.2,
-        "reason": "sudah crossing"
-      },
-      "fib": {
-        "swing_low": 0.09564,
-        "swing_high": 0.11084,
-        "0.236": 0.1072528,
-        "0.382": 0.10503359999999999,
-        "0.5": 0.10324,
-        "0.618": 0.10144639999999999,
-        "0.786": 0.0988928,
-        "ext_1.272": 0.11497439999999999,
-        "ext_1.618": 0.1202336
+        "swing_low": 95.29,
+        "swing_high": 146.25,
+        "0.236": 134.22344,
+        "0.382": 126.78328,
+        "0.5": 120.77000000000001,
+        "0.618": 114.75672,
+        "0.786": 106.19544,
+        "ext_1.272": 160.11112,
+        "ext_1.618": 177.74328
       }
     }
   ]
