@@ -5,8 +5,10 @@ Pembagian tugas antar timeframe (sengaja beda-beda, bukan tiga kali
 pertanyaan yang sama):
 
   4H  (KUNCI)      -> apakah setup-nya layak?
-                      RSI oversold ATAU golden cross (StochRSI K>D
-                      atau EMA9>EMA21 yang baru terjadi)
+                      WAJIB KEDUANYA: StochRSI masih <= 35 (oversold) DAN
+                      golden cross (K memotong D) sudah/baru terjadi.
+                      Kalau StochRSI sudah di atas 35 (sudah naik jauh),
+                      TIDAK lolos lagi meski pernah golden cross.
   1H  (KONFIRMASI) -> apakah belum telat? momentum belum habis,
                       belum overbought, arah belum berbalik
   15M (KONFIRMASI ULANG) -> timing masuk. StochRSI/RSI sedang naik.
@@ -53,7 +55,9 @@ STOCH_K_SMOOTH = 3
 STOCH_D_SMOOTH = 3
 EMA_FAST, EMA_SLOW = 9, 21
 
-RSI_OVERSOLD = 35          # 4H: RSI <= ini dianggap oversold
+STOCH_OVERSOLD = 50        # 4H: StochRSI K wajib di bawah ini (potensi naik masih luas)
+SWING_ORDER = 3            # candle kiri/kanan buat tentukan swing high/low
+STRUCTURE_LOOKBACK = 80    # jumlah candle 4H yang dicek buat struktur
 CROSS_RECENT_BARS = 3      # golden cross dianggap "baru" kalau terjadi <= N candle lalu
 CONFIRM_RSI_MIN = 40       # 1H: di bawah ini artinya momentum masih lemah
 CONFIRM_RSI_MAX = 72       # 1H: di atas ini artinya sudah telat / overbought
@@ -257,32 +261,104 @@ def fibonacci_plan(df: pd.DataFrame, price: float) -> dict:
 
 # ============================== KRITERIA TIAP TIMEFRAME ==============================
 
+def detect_structure(df: pd.DataFrame, order: int = SWING_ORDER, lookback: int = STRUCTURE_LOOKBACK) -> dict:
+    """Deteksi struktur harga sederhana (proksi BOS/CHoCH, bukan replika
+    persis LuxAlgo -- parameter internal mereka tidak dipublikasikan).
+
+    - Cari swing high & swing low pakai metode fraktal (titik tertinggi/
+      terendah dibanding N candle kiri-kanan).
+    - Trend 'up' kalau swing high & low terbaru sama-sama lebih tinggi dari
+      sebelumnya (HH+HL). Trend 'down' kalau sebaliknya (LH+LL).
+    - BOS bullish: trend sudah 'up', lalu close menembus swing high
+      terakhir lagi (lanjutan tren).
+    - CHoCH bullish: trend masih 'down'/'mixed', tapi close menembus swing
+      high terakhir (lower high) -- sinyal awal potensi pembalikan.
+    """
+    sub = df.tail(lookback).reset_index(drop=True)
+    n = len(sub)
+    if n < order * 2 + 10:
+        return {"trend": "unknown", "bos_up": False, "choch_up": False,
+                "last_swing_high": None, "last_swing_low": None}
+
+    high_idx, low_idx = [], []
+    for i in range(order, n - order):
+        window_h = sub["high"].iloc[i - order:i + order + 1]
+        window_l = sub["low"].iloc[i - order:i + order + 1]
+        if sub["high"].iloc[i] == window_h.max():
+            high_idx.append(i)
+        if sub["low"].iloc[i] == window_l.min():
+            low_idx.append(i)
+
+    if len(high_idx) < 2 or len(low_idx) < 2:
+        return {"trend": "unknown", "bos_up": False, "choch_up": False,
+                "last_swing_high": None, "last_swing_low": None}
+
+    last_high, prev_high = sub["high"].iloc[high_idx[-1]], sub["high"].iloc[high_idx[-2]]
+    last_low, prev_low = sub["low"].iloc[low_idx[-1]], sub["low"].iloc[low_idx[-2]]
+
+    higher_high, higher_low = last_high > prev_high, last_low > prev_low
+    lower_high, lower_low = last_high < prev_high, last_low < prev_low
+
+    if higher_high and higher_low:
+        trend = "up"
+    elif lower_high and lower_low:
+        trend = "down"
+    else:
+        trend = "mixed"
+
+    close_now = float(sub["close"].iloc[-1])
+    broke_last_high = close_now > last_high
+
+    return {
+        "trend": trend,
+        "bos_up": bool(broke_last_high and trend == "up"),
+        "choch_up": bool(broke_last_high and trend in ("down", "mixed")),
+        "last_swing_high": round(float(last_high), 8),
+        "last_swing_low": round(float(last_low), 8),
+    }
+
+
 def check_key_4h(df: pd.DataFrame) -> dict:
-    """4H = kunci. Lolos kalau RSI oversold ATAU golden cross baru."""
+    """4H = kunci. WAJIB SEMUA:
+    1. StochRSI (K) di bawah 50 -- masih ada ruang naik, bukan sudah telat
+    2. Golden cross sudah/baru terjadi (K memotong D dari bawah)
+    3. Struktur harga menunjukkan BOS atau CHoCH bullish -- ada BUKTI
+       pergerakan harga yang menembus level penting, bukan cuma oscillator
+       yang naik sementara harga masih terkurung/turun.
+    Kalau salah satu tidak terpenuhi (termasuk golden cross tanpa BOS/CHoCH,
+    persis kasus token yang sudah naik jauh tapi struktur belum konfirmasi),
+    TIDAK lolos."""
     close = df["close"]
     rsi_series, k, d = stoch_rsi(close)
     rsi_now = float(rsi_series.iloc[-1])
+    k_now, d_now = float(k.iloc[-1]), float(d.iloc[-1])
 
     ema_fast, ema_slow = ema(close, EMA_FAST), ema(close, EMA_SLOW)
 
-    is_oversold = rsi_now <= RSI_OVERSOLD
-    stoch_gc = crossed_up_recently(k, d)
-    ema_gc = crossed_up_recently(ema_fast, ema_slow, bars=5)
+    still_room = k_now <= STOCH_OVERSOLD
+    golden_cross = crossed_up_recently(k, d)
+    structure = detect_structure(df)
+    structure_ok = structure["bos_up"] or structure["choch_up"]
 
     reasons = []
-    if is_oversold:
-        reasons.append("RSI oversold")
-    if stoch_gc:
-        reasons.append("StochRSI golden cross")
-    if ema_gc:
-        reasons.append("EMA golden cross")
+    if still_room:
+        reasons.append(f"StochRSI < {STOCH_OVERSOLD}")
+    if golden_cross:
+        reasons.append("golden cross")
+    if structure["bos_up"]:
+        reasons.append("BOS bullish")
+    if structure["choch_up"]:
+        reasons.append("CHoCH bullish")
 
     return {
-        "ok": bool(is_oversold or stoch_gc or ema_gc),
+        "ok": bool(still_room and golden_cross and structure_ok),
         "rsi": round(rsi_now, 1),
-        "stoch_k": round(float(k.iloc[-1]), 1),
-        "stoch_d": round(float(d.iloc[-1]), 1),
+        "stoch_k": round(k_now, 1),
+        "stoch_d": round(d_now, 1),
         "ema_bull": bool(ema_fast.iloc[-1] > ema_slow.iloc[-1]),
+        "structure_trend": structure["trend"],
+        "last_swing_high": structure["last_swing_high"],
+        "last_swing_low": structure["last_swing_low"],
         "reasons": reasons,
     }
 
@@ -427,7 +503,8 @@ def format_candidate_block(c: dict) -> str:
     lines = [
         f"🟢 *{c['inst_id']}* — skor {c['rank_score']}",
         f"Harga: {fmt(c['price'])}",
-        f"4H: {' + '.join(c['key_4h']['reasons'])} | RSI {c['key_4h']['rsi']}",
+        f"4H: {' + '.join(c['key_4h']['reasons'])} | RSI {c['key_4h']['rsi']} | StochRSI {c['key_4h']['stoch_k']}/{c['key_4h']['stoch_d']}",
+        f"    Struktur: {c['key_4h']['structure_trend']} | swing high terakhir: {fmt(c['key_4h']['last_swing_high'])}",
         f"1H: RSI {c['confirm_1h']['rsi']} | StochRSI {c['confirm_1h']['stoch_k']}/{c['confirm_1h']['stoch_d']}",
         f"15m: {c['timing_15m']['verdict']} (K {c['timing_15m']['stoch_k']})",
         f"Volume 4H: {vol['ratio']}x rata-rata | OI: {oi_txt}",
@@ -489,7 +566,7 @@ def save_results_json(candidates: list, scanned: int, path: str = "docs/results.
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "total_scanned": scanned,
         "criteria": {
-            "key": f"{BAR_KEY}: RSI <= {RSI_OVERSOLD} atau golden cross (StochRSI/EMA)",
+            "key": f"{BAR_KEY}: StochRSI < {STOCH_OVERSOLD} DAN golden cross DAN struktur BOS/CHoCH bullish (ketiganya wajib)",
             "confirm": f"{BAR_CONFIRM}: RSI {CONFIRM_RSI_MIN}-{CONFIRM_RSI_MAX}, StochRSI <= {CONFIRM_STOCH_MAX}",
             "timing": f"{BAR_TIMING}: StochRSI/RSI sedang naik",
         },
