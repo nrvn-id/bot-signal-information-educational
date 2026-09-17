@@ -107,6 +107,7 @@
             <div class="score">${c.rank_score}</div>
           </div>
           <div class="tf-line">4H <span class="tf-tag">${c.key_4h.reasons.join(' + ')}</span> — RSI <b>${c.key_4h.rsi}</b>, StochRSI <b>${c.key_4h.stoch_k}/${c.key_4h.stoch_d}</b></div>
+          <div class="tf-line">Struktur 4H: <b>${c.key_4h.structure_trend}</b> — swing high terakhir <b>${fmt(c.key_4h.last_swing_high)}</b></div>
           <div class="tf-line">1H konfirmasi — RSI <b>${c.confirm_1h.rsi}</b>, StochRSI <b>${c.confirm_1h.stoch_k}/${c.confirm_1h.stoch_d}</b></div>
           <div class="tf-line">15m timing — <span class="tf-tag">${c.timing_15m.verdict}</span> (K <b>${c.timing_15m.stoch_k}</b>)</div>
           <div class="ctx">Volume 4H: <b>${vol.ratio}x</b> rata-rata &nbsp;|&nbsp; Open Interest 24j: ${oiTxt}${divTxt}</div>
