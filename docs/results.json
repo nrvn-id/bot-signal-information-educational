@@ -1,71 +1,10 @@
 {
-  "generated_at": "2026-09-17T23:11:48.540530+00:00",
+  "generated_at": "2026-09-18T01:42:39.136421+00:00",
   "total_scanned": 467,
   "criteria": {
     "key": "4H: StochRSI < 50 DAN golden cross DAN struktur BOS/CHoCH bullish (ketiganya wajib)",
     "confirm": "1H: RSI 40-72, StochRSI <= 85",
     "timing": "15m: StochRSI/RSI sedang naik"
   },
-  "candidates": [
-    {
-      "inst_id": "TWLO-USDT-SWAP",
-      "price": 245.36,
-      "key_4h": {
-        "ok": true,
-        "rsi": 65.6,
-        "stoch_k": 43.6,
-        "stoch_d": 34.5,
-        "ema_bull": true,
-        "structure_trend": "up",
-        "last_swing_high": 244.53,
-        "last_swing_low": 235.16,
-        "reasons": [
-          "StochRSI < 50",
-          "golden cross",
-          "BOS bullish"
-        ]
-      },
-      "confirm_1h": {
-        "ok": true,
-        "rsi": 62.4,
-        "stoch_k": 81.6,
-        "stoch_d": 83.8,
-        "notes": []
-      },
-      "timing_15m": {
-        "ok": true,
-        "rsi": 58.4,
-        "stoch_k": 0.5,
-        "stoch_d": 14.5,
-        "verdict": "mulai berbelok naik"
-      },
-      "volume_4h": {
-        "ratio": 0.04,
-        "rising": false
-      },
-      "open_interest": {
-        "available": true,
-        "change_24h_pct": -2.62,
-        "rising": false
-      },
-      "bullish_divergence_4h": false,
-      "plan": {
-        "swing_low": 221.82,
-        "swing_high": 248.04,
-        "entries": [
-          245.36,
-          238.02396,
-          234.93
-        ],
-        "avg_entry": 239.43798666666666,
-        "sl": 220.71089999999998,
-        "tp1": 248.04,
-        "tp2": 255.17184,
-        "tp3": 264.24396,
-        "rr_to_tp1": 0.46,
-        "rr_healthy": false
-      },
-      "rank_score": 70.0
-    }
-  ]
+  "candidates": []
 }
