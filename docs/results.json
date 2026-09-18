@@ -1,6 +1,11 @@
 {
-  "generated_at": "2026-09-18T01:42:39.136421+00:00",
-  "total_scanned": 467,
+  "generated_at": "2026-09-18T06:09:33.399584+00:00",
+  "total_scanned": 187,
+  "exchanges": [
+    "OKX",
+    "BINANCE"
+  ],
+  "candidates_per_exchange": {},
   "criteria": {
     "key": "4H: StochRSI < 50 DAN golden cross DAN struktur BOS/CHoCH bullish (ketiganya wajib)",
     "confirm": "1H: RSI 40-72, StochRSI <= 85",
