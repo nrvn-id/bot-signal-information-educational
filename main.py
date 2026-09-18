@@ -39,6 +39,13 @@ import pandas as pd
 
 OKX_BASE_URL = "https://www.okx.com"
 BINANCE_BASE_URL = "https://fapi.binance.com"
+# Binance Futures kadang balas 451 (blokir hukum/regional) buat IP milik cloud
+# provider tertentu, termasuk GitHub Actions -- ini beda dari masalah IP kamu
+# sendiri, jadi butuh proxy terpisah kalau mau tetap dipakai dari GitHub.
+# Kosongkan (biarkan "") kalau belum punya proxy -- Binance akan otomatis
+# dilewati (skip) tiap run tanpa bikin bot berhenti, OKX tetap jalan normal.
+BINANCE_PROXY_URL = os.environ.get("BINANCE_PROXY_URL", "")
+BINANCE_PROXIES = {"http": BINANCE_PROXY_URL, "https": BINANCE_PROXY_URL} if BINANCE_PROXY_URL else None
 SETTLE_CCY = "USDT"
 REQUEST_DELAY_SEC = 0.12
 
@@ -310,7 +317,7 @@ def binance_fetch_instruments() -> list:
     quoteAsset == USDT, contractType == PERPETUAL, status == TRADING.
     Ini otomatis membuang pair non-crypto/non-perpetual kalau ada."""
     url = f"{BINANCE_BASE_URL}/fapi/v1/exchangeInfo"
-    resp = requests.get(url, timeout=15)
+    resp = requests.get(url, timeout=15, proxies=BINANCE_PROXIES)
     resp.raise_for_status()
     data = resp.json()
     return sorted([
@@ -328,7 +335,7 @@ def binance_fetch_candles(symbol: str, bar: str, limit: int, retries: int = 3) -
 
     data = None
     for attempt in range(retries):
-        resp = requests.get(url, params=params, timeout=15)
+        resp = requests.get(url, params=params, timeout=15, proxies=BINANCE_PROXIES)
         if resp.status_code == 429 or resp.status_code == 418:
             time.sleep(2 + attempt * 2)
             continue
@@ -353,7 +360,7 @@ def binance_fetch_oi_change(symbol: str) -> dict:
     """Perubahan Open Interest ~24 jam terakhir lewat openInterestHist (period 1h)."""
     url = f"{BINANCE_BASE_URL}/futures/data/openInterestHist"
     try:
-        resp = requests.get(url, params={"symbol": symbol, "period": "1h", "limit": "25"}, timeout=12)
+        resp = requests.get(url, params={"symbol": symbol, "period": "1h", "limit": "25"}, timeout=12, proxies=BINANCE_PROXIES)
         resp.raise_for_status()
         rows = resp.json()  # terlama -> terbaru
         if not isinstance(rows, list) or len(rows) < 25:
