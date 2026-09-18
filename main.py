@@ -38,12 +38,171 @@ import pandas as pd
 # ============================== CONFIG ==============================
 
 OKX_BASE_URL = "https://www.okx.com"
+BINANCE_BASE_URL = "https://fapi.binance.com"
 SETTLE_CCY = "USDT"
 REQUEST_DELAY_SEC = 0.12
+
+EXCHANGES = ["OKX", "BINANCE"]   # comment salah satu baris ini kalau mau nonaktifkan sementara
+
+# ============================== FILTER KATEGORI PROYEK ==============================
+# Diambil OTOMATIS tiap kali bot jalan dari CoinGecko (API publik, tanpa API
+# key). Tidak perlu update manual lagi. Kalau CoinGecko gagal/rate-limit,
+# otomatis jatuh balik ke daftar manual di bawah (STATIC_CATEGORY_FALLBACK)
+# supaya bot tetap jalan.
+COINGECKO_BASE = "https://api.coingecko.com/api/v3"
+COINGECKO_CATEGORY_SLUGS = {
+    "DeFi": "decentralized-finance-defi",
+    "RWA": "real-world-assets-rwa",
+    "L1": "layer-1",
+    "L2": "layer-2",
+    "AI": "artificial-intelligence",
+    "Memecoin": "meme-token",
+}
+LARGE_CAP_MAX_RANK = 20    # market cap rank 1-20   -> Large-Cap
+MID_CAP_MAX_RANK = 150     # market cap rank 21-150 -> Mid-Cap
+COINGECKO_REQUEST_DELAY = 2.0  # jeda antar call biar tidak kena rate limit (~10-30/menit di tier gratis)
+
+SELECTED_CATEGORIES = ["Large-Cap", "Mid-Cap", "DeFi", "RWA", "L1", "L2", "AI", "Memecoin"]
+
+# Cadangan kalau CoinGecko tidak bisa diakses -- dikurasi manual, tidak lengkap
+# 100% tapi cukup buat bot tetap jalan di run itu.
+STATIC_CATEGORY_FALLBACK = {
+    "Large-Cap": {
+        "BTC", "ETH", "BNB", "XRP", "SOL", "ADA", "AVAX", "DOT", "LINK",
+        "LTC", "BCH", "TRX", "MATIC", "POL", "TON", "ATOM", "DOGE", "SHIB",
+    },
+    "Mid-Cap": {
+        "UNI", "AAVE", "INJ", "SUI", "APT", "NEAR", "ARB", "OP", "FIL",
+        "ICP", "HBAR", "VET", "ALGO", "FTM", "SAND", "MANA", "AXS", "EGLD",
+        "XLM", "XMR", "ETC", "RUNE", "IMX", "GRT", "MKR", "SNX", "LDO",
+        "CRV", "COMP", "TIA", "SEI", "JTO", "PYTH", "WLD", "ORDI", "STX",
+        "RENDER", "FET", "TAO", "JUP", "STRK", "W", "ONDO", "GALA", "CHZ",
+    },
+    "DeFi": {
+        "UNI", "AAVE", "CRV", "COMP", "MKR", "SNX", "SUSHI", "1INCH",
+        "BAL", "YFI", "CAKE", "DYDX", "GMX", "LDO", "PENDLE", "JOE",
+        "RUNE", "KNC", "LRC", "ZRX", "CVX", "FXS",
+    },
+    "RWA": {
+        "ONDO", "POLYX", "CFG", "TRU", "MPL", "RIO", "OM", "PROPS",
+        "CTC", "DUSK",
+    },
+    "L1": {
+        "BTC", "ETH", "BNB", "SOL", "AVAX", "ADA", "DOT", "NEAR", "ATOM",
+        "ALGO", "FTM", "EGLD", "ICP", "APT", "SUI", "SEI", "TIA", "TON",
+        "KAVA", "ROSE", "ZIL", "KSM", "WAVES", "FLOW", "MINA", "ONE",
+        "CELO", "XTZ", "INJ",
+    },
+    "L2": {
+        "ARB", "OP", "MATIC", "POL", "STRK", "MANTA", "METIS", "IMX",
+        "ZK", "LRC", "MNT", "BLAST",
+    },
+    "AI": {
+        "FET", "AGIX", "OCEAN", "RENDER", "TAO", "RLC", "NMR", "GRT",
+        "AKT", "WLD", "ARKM", "PHB",
+    },
+    "Memecoin": {
+        "DOGE", "SHIB", "PEPE", "WIF", "BONK", "FLOKI", "MEME", "BOME",
+        "SATS", "ORDI", "NEIRO", "POPCAT", "MOG", "TURBO", "BRETT",
+        "DEGEN", "MYRO", "WOJAK", "LADYS",
+    },
+}
+
+# Diisi oleh build_category_map() di awal main(). Sebelum itu dipanggil,
+# pakai fallback statis supaya import module tidak pernah dalam keadaan kosong.
+ACTIVE_CATEGORY_MAP = {k: set(v) for k, v in STATIC_CATEGORY_FALLBACK.items()}
+
+
+def fetch_coingecko_markets(params: dict, retries: int = 3) -> list:
+    url = f"{COINGECKO_BASE}/coins/markets"
+    for attempt in range(retries):
+        resp = requests.get(url, params=params, timeout=20)
+        if resp.status_code == 429:
+            time.sleep(15 + attempt * 15)
+            continue
+        resp.raise_for_status()
+        return resp.json()
+    raise RuntimeError("CoinGecko rate limited terus-menerus")
+
+
+def build_category_map() -> dict:
+    """Bangun peta kategori LIVE dari CoinGecko. Jatuh balik ke daftar manual
+    kalau gagal (network error, rate limit habis, dsb) -- tidak pernah
+    membuat bot berhenti total gara-gara ini."""
+    cat_map = {cat: set() for cat in COINGECKO_CATEGORY_SLUGS}
+    cat_map["Large-Cap"] = set()
+    cat_map["Mid-Cap"] = set()
+
+    try:
+        # 1) ranking market cap keseluruhan -> buat Large-Cap / Mid-Cap
+        rows = fetch_coingecko_markets({
+            "vs_currency": "usd", "order": "market_cap_desc",
+            "per_page": 250, "page": 1, "sparkline": "false",
+        })
+        for r in rows:
+            sym, rank = r.get("symbol", "").upper(), r.get("market_cap_rank")
+            if not sym or rank is None:
+                continue
+            if rank <= LARGE_CAP_MAX_RANK:
+                cat_map["Large-Cap"].add(sym)
+            elif rank <= MID_CAP_MAX_RANK:
+                cat_map["Mid-Cap"].add(sym)
+        time.sleep(COINGECKO_REQUEST_DELAY)
+
+        # 2) tiap kategori narasi (DeFi, RWA, L1, L2, AI, Memecoin)
+        for cat_name, slug in COINGECKO_CATEGORY_SLUGS.items():
+            rows = fetch_coingecko_markets({
+                "vs_currency": "usd", "category": slug,
+                "order": "market_cap_desc", "per_page": 250, "page": 1,
+                "sparkline": "false",
+            })
+            for r in rows:
+                sym = r.get("symbol", "").upper()
+                if sym:
+                    cat_map[cat_name].add(sym)
+            time.sleep(COINGECKO_REQUEST_DELAY)
+
+    except Exception as e:
+        print(f"[WARNING] Gagal ambil kategori live dari CoinGecko ({e}) -- pakai daftar manual cadangan.")
+        return {k: set(v) for k, v in STATIC_CATEGORY_FALLBACK.items()}
+
+    if all(len(v) == 0 for v in cat_map.values()):
+        print("[WARNING] Data kategori dari CoinGecko kosong (format API mungkin berubah) -- pakai daftar manual cadangan.")
+        return {k: set(v) for k, v in STATIC_CATEGORY_FALLBACK.items()}
+
+    total = sum(len(v) for v in cat_map.values())
+    print(f"[INFO] Kategori live dari CoinGecko berhasil diambil ({total} entri ticker-kategori).")
+    return cat_map
+
+
+def get_base_ticker(exchange: str, inst_id: str) -> str:
+    if exchange == "OKX":
+        base = inst_id.split("-")[0]
+    else:  # BINANCE, format "BTCUSDT"
+        base = inst_id[:-4] if inst_id.endswith("USDT") else inst_id
+    for prefix in ("1000000", "1000"):  # token meme yang di-scale (mis. 1000PEPEUSDT)
+        if base.startswith(prefix) and len(base) > len(prefix):
+            base = base[len(prefix):]
+            break
+    return base.upper()
+
+
+def categories_for(base_ticker: str) -> list:
+    return [cat for cat, tickers in ACTIVE_CATEGORY_MAP.items() if base_ticker in tickers]
+
+
+def passes_category_filter(exchange: str, inst_id: str) -> list:
+    """Return list kategori yang cocok (kosong = tidak lolos filter)."""
+    base = get_base_ticker(exchange, inst_id)
+    cats = categories_for(base)
+    return [c for c in cats if c in SELECTED_CATEGORIES]
 
 BAR_KEY = "4H"       # timeframe kunci
 BAR_CONFIRM = "1H"   # konfirmasi
 BAR_TIMING = "15m"   # konfirmasi ulang / timing
+
+# Mapping nama timeframe generik -> format khusus tiap exchange
+BINANCE_BAR_MAP = {"4H": "4h", "1H": "1h", "15m": "15m"}
 
 LIMIT_KEY = 200
 LIMIT_CONFIRM = 150
@@ -72,9 +231,10 @@ MAX_RESULTS_IN_MESSAGE = 10
 TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
 TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 
-# ============================== DATA FETCH ==============================
+# ============================== DATA FETCH: OKX ==============================
 
-def fetch_active_swap_instruments(settle_ccy: str = SETTLE_CCY) -> list:
+def okx_fetch_instruments(settle_ccy: str = SETTLE_CCY) -> list:
+    """Futures perpetual (SWAP) USDT-margined di OKX -- semuanya pair crypto/USDT."""
     url = f"{OKX_BASE_URL}/api/v5/public/instruments"
     resp = requests.get(url, params={"instType": "SWAP"}, timeout=15)
     resp.raise_for_status()
@@ -87,7 +247,7 @@ def fetch_active_swap_instruments(settle_ccy: str = SETTLE_CCY) -> list:
     ])
 
 
-def fetch_candles(inst_id: str, bar: str, limit: int, retries: int = 3) -> pd.DataFrame:
+def okx_fetch_candles(inst_id: str, bar: str, limit: int, retries: int = 3) -> pd.DataFrame:
     url = f"{OKX_BASE_URL}/api/v5/market/candles"
     params = {"instId": inst_id, "bar": bar, "limit": str(limit)}
 
@@ -115,10 +275,10 @@ def fetch_candles(inst_id: str, bar: str, limit: int, retries: int = 3) -> pd.Da
     return df
 
 
-def fetch_open_interest_change(inst_id: str) -> dict:
+def okx_fetch_oi_change(inst_id: str) -> dict:
     """Perubahan Open Interest ~24 jam terakhir.
     Endpoint rubik OKX pakai ccy (mis. 'BTC'), bukan instId penuh.
-    Tidak semua coin tersedia -> kalau gagal, return None (bukan error)."""
+    Tidak semua coin tersedia -> kalau gagal, return unavailable (bukan error)."""
     ccy = inst_id.split("-")[0]
     url = f"{OKX_BASE_URL}/api/v5/rubik/stat/contracts/open-interest-volume"
     try:
@@ -135,13 +295,100 @@ def fetch_open_interest_change(inst_id: str) -> dict:
         if oi_24h_ago == 0:
             return {"available": False}
         change_pct = (oi_now / oi_24h_ago - 1) * 100
-        return {
-            "available": True,
-            "change_24h_pct": round(change_pct, 2),
-            "rising": change_pct > 0,
-        }
+        return {"available": True, "change_24h_pct": round(change_pct, 2), "rising": change_pct > 0}
     except Exception:
         return {"available": False}
+
+
+# ============================== DATA FETCH: BINANCE ==============================
+
+def binance_fetch_instruments() -> list:
+    """Futures perpetual USDT-M di Binance -- disaring khusus pair CRYPTO/USDT:
+    quoteAsset == USDT, contractType == PERPETUAL, status == TRADING.
+    Ini otomatis membuang pair non-crypto/non-perpetual kalau ada."""
+    url = f"{BINANCE_BASE_URL}/fapi/v1/exchangeInfo"
+    resp = requests.get(url, timeout=15)
+    resp.raise_for_status()
+    data = resp.json()
+    return sorted([
+        s["symbol"] for s in data.get("symbols", [])
+        if s.get("quoteAsset") == "USDT"
+        and s.get("contractType") == "PERPETUAL"
+        and s.get("status") == "TRADING"
+    ])
+
+
+def binance_fetch_candles(symbol: str, bar: str, limit: int, retries: int = 3) -> pd.DataFrame:
+    url = f"{BINANCE_BASE_URL}/fapi/v1/klines"
+    interval = BINANCE_BAR_MAP.get(bar, bar)
+    params = {"symbol": symbol, "interval": interval, "limit": str(limit)}
+
+    data = None
+    for attempt in range(retries):
+        resp = requests.get(url, params=params, timeout=15)
+        if resp.status_code == 429 or resp.status_code == 418:
+            time.sleep(2 + attempt * 2)
+            continue
+        resp.raise_for_status()
+        data = resp.json()
+        break
+    if not data:
+        raise RuntimeError(f"Tidak ada data candle {symbol} ({bar}) dari Binance")
+
+    # kline Binance: [openTime, open, high, low, close, volume, closeTime, ...]
+    df = pd.DataFrame(data, columns=[
+        "ts", "open", "high", "low", "close", "vol", "closeTime",
+        "quoteVol", "trades", "takerBaseVol", "takerQuoteVol", "ignore"
+    ])
+    for c in ["open", "high", "low", "close", "vol"]:
+        df[c] = df[c].astype(float)
+    df["ts"] = pd.to_datetime(df["ts"].astype(np.int64), unit="ms")
+    return df[["ts", "open", "high", "low", "close", "vol"]]
+
+
+def binance_fetch_oi_change(symbol: str) -> dict:
+    """Perubahan Open Interest ~24 jam terakhir lewat openInterestHist (period 1h)."""
+    url = f"{BINANCE_BASE_URL}/futures/data/openInterestHist"
+    try:
+        resp = requests.get(url, params={"symbol": symbol, "period": "1h", "limit": "25"}, timeout=12)
+        resp.raise_for_status()
+        rows = resp.json()  # terlama -> terbaru
+        if not isinstance(rows, list) or len(rows) < 25:
+            return {"available": False}
+        oi_24h_ago = float(rows[0]["sumOpenInterest"])
+        oi_now = float(rows[-1]["sumOpenInterest"])
+        if oi_24h_ago == 0:
+            return {"available": False}
+        change_pct = (oi_now / oi_24h_ago - 1) * 100
+        return {"available": True, "change_24h_pct": round(change_pct, 2), "rising": change_pct > 0}
+    except Exception:
+        return {"available": False}
+
+
+# ============================== DISPATCHER ANTAR EXCHANGE ==============================
+
+def fetch_instruments(exchange: str) -> list:
+    if exchange == "OKX":
+        return okx_fetch_instruments()
+    if exchange == "BINANCE":
+        return binance_fetch_instruments()
+    raise ValueError(f"Exchange tidak dikenal: {exchange}")
+
+
+def fetch_candles(exchange: str, inst_id: str, bar: str, limit: int) -> pd.DataFrame:
+    if exchange == "OKX":
+        return okx_fetch_candles(inst_id, bar, limit)
+    if exchange == "BINANCE":
+        return binance_fetch_candles(inst_id, bar, limit)
+    raise ValueError(f"Exchange tidak dikenal: {exchange}")
+
+
+def fetch_oi_change(exchange: str, inst_id: str) -> dict:
+    if exchange == "OKX":
+        return okx_fetch_oi_change(inst_id)
+    if exchange == "BINANCE":
+        return binance_fetch_oi_change(inst_id)
+    return {"available": False}
 
 
 # ============================== INDIKATOR ==============================
@@ -421,8 +668,8 @@ def check_timing_15m(df: pd.DataFrame) -> dict:
 
 # ============================== SCAN ==============================
 
-def scan_instrument(inst_id: str):
-    df_4h = fetch_candles(inst_id, BAR_KEY, LIMIT_KEY)
+def scan_instrument(exchange: str, inst_id: str):
+    df_4h = fetch_candles(exchange, inst_id, BAR_KEY, LIMIT_KEY)
     if len(df_4h) < 60:
         return None
     key = check_key_4h(df_4h)
@@ -430,7 +677,7 @@ def scan_instrument(inst_id: str):
         return None
 
     time.sleep(REQUEST_DELAY_SEC)
-    df_1h = fetch_candles(inst_id, BAR_CONFIRM, LIMIT_CONFIRM)
+    df_1h = fetch_candles(exchange, inst_id, BAR_CONFIRM, LIMIT_CONFIRM)
     if len(df_1h) < 60:
         return None
     confirm = check_confirm_1h(df_1h)
@@ -438,7 +685,7 @@ def scan_instrument(inst_id: str):
         return None
 
     time.sleep(REQUEST_DELAY_SEC)
-    df_15m = fetch_candles(inst_id, BAR_TIMING, LIMIT_TIMING)
+    df_15m = fetch_candles(exchange, inst_id, BAR_TIMING, LIMIT_TIMING)
     if len(df_15m) < 60:
         return None
     timing = check_timing_15m(df_15m)
@@ -451,9 +698,10 @@ def scan_instrument(inst_id: str):
         return None
 
     time.sleep(REQUEST_DELAY_SEC)
-    oi = fetch_open_interest_change(inst_id)
+    oi = fetch_oi_change(exchange, inst_id)
 
     return {
+        "exchange": exchange,
         "inst_id": inst_id,
         "price": price,
         "key_4h": key,
@@ -501,7 +749,7 @@ def format_candidate_block(c: dict) -> str:
     vol = c["volume_4h"]
 
     lines = [
-        f"🟢 *{c['inst_id']}* — skor {c['rank_score']}",
+        f"🟢 *[{c['exchange']}] {c['inst_id']}* ({'/'.join(c['categories'])}) — skor {c['rank_score']}",
         f"Harga: {fmt(c['price'])}",
         f"4H: {' + '.join(c['key_4h']['reasons'])} | RSI {c['key_4h']['rsi']} | StochRSI {c['key_4h']['stoch_k']}/{c['key_4h']['stoch_d']}",
         f"    Struktur: {c['key_4h']['structure_trend']} | swing high terakhir: {fmt(c['key_4h']['last_swing_high'])}",
@@ -562,9 +810,15 @@ def send_telegram(message: str):
 
 def save_results_json(candidates: list, scanned: int, path: str = "docs/results.json"):
     os.makedirs(os.path.dirname(path), exist_ok=True)
+    per_exchange = {}
+    for c in candidates:
+        per_exchange[c["exchange"]] = per_exchange.get(c["exchange"], 0) + 1
+
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "total_scanned": scanned,
+        "exchanges": EXCHANGES,
+        "candidates_per_exchange": per_exchange,
         "criteria": {
             "key": f"{BAR_KEY}: StochRSI < {STOCH_OVERSOLD} DAN golden cross DAN struktur BOS/CHoCH bullish (ketiganya wajib)",
             "confirm": f"{BAR_CONFIRM}: RSI {CONFIRM_RSI_MIN}-{CONFIRM_RSI_MAX}, StochRSI <= {CONFIRM_STOCH_MAX}",
@@ -580,24 +834,40 @@ def save_results_json(candidates: list, scanned: int, path: str = "docs/results.
 # ============================== MAIN ==============================
 
 def main():
-    symbols = fetch_active_swap_instruments()
-    print(f"Total pair futures USDT aktif: {len(symbols)}")
+    global ACTIVE_CATEGORY_MAP
+    print("Mengambil kategori proyek live dari CoinGecko...")
+    ACTIVE_CATEGORY_MAP = build_category_map()
+
+    all_targets = []
+    for exch in EXCHANGES:
+        try:
+            symbols = fetch_instruments(exch)
+            categorized = []
+            for s in symbols:
+                cats = passes_category_filter(exch, s)
+                if cats:
+                    categorized.append((exch, s, cats))
+            print(f"[{exch}] Total pair: {len(symbols)} | Lolos filter kategori: {len(categorized)}")
+            all_targets += categorized
+        except Exception as e:
+            print(f"[ERROR] Gagal ambil daftar instrument {exch}: {e}")
 
     candidates, scanned = [], 0
-    for inst_id in symbols:
+    for exch, inst_id, cats in all_targets:
         try:
-            result = scan_instrument(inst_id)
+            result = scan_instrument(exch, inst_id)
             scanned += 1
             if result:
+                result["categories"] = cats
                 result["rank_score"] = rank_score(result)
                 candidates.append(result)
-                print(f"[LOLOS] {inst_id} skor {result['rank_score']}")
+                print(f"[LOLOS] [{exch}] {inst_id} ({', '.join(cats)}) skor {result['rank_score']}")
         except Exception as e:
-            print(f"[ERROR] {inst_id}: {e}")
+            print(f"[ERROR] [{exch}] {inst_id}: {e}")
         time.sleep(REQUEST_DELAY_SEC)
 
     candidates.sort(key=lambda c: c["rank_score"], reverse=True)
-    print(f"Discan {scanned}/{len(symbols)} | Lolos: {len(candidates)}")
+    print(f"Discan {scanned}/{len(all_targets)} | Lolos: {len(candidates)}")
 
     save_results_json(candidates, scanned)
 
