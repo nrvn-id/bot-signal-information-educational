@@ -60,7 +60,8 @@ COINGECKO_CATEGORY_SLUGS = {
 }
 LARGE_CAP_MAX_RANK = 20    # market cap rank 1-20   -> Large-Cap
 MID_CAP_MAX_RANK = 150     # market cap rank 21-150 -> Mid-Cap
-COINGECKO_REQUEST_DELAY = 2.0  # jeda antar call biar tidak kena rate limit (~10-30/menit di tier gratis)
+COINGECKO_REQUEST_DELAY = 2.1  # jeda antar call, jaga di bawah 30 req/menit (limit tier Demo)
+COINGECKO_API_KEY = os.environ.get("COINGECKO_API_KEY", "")  # opsional; kosong = tetap jalan pakai tier publik
 
 SELECTED_CATEGORIES = ["Large-Cap", "Mid-Cap", "DeFi", "RWA", "L1", "L2", "AI", "Memecoin"]
 
@@ -115,6 +116,8 @@ ACTIVE_CATEGORY_MAP = {k: set(v) for k, v in STATIC_CATEGORY_FALLBACK.items()}
 
 def fetch_coingecko_markets(params: dict, retries: int = 3) -> list:
     url = f"{COINGECKO_BASE}/coins/markets"
+    if COINGECKO_API_KEY:
+        params = {**params, "x_cg_demo_api_key": COINGECKO_API_KEY}
     for attempt in range(retries):
         resp = requests.get(url, params=params, timeout=20)
         if resp.status_code == 429:
