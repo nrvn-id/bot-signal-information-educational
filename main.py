@@ -49,7 +49,7 @@ BINANCE_PROXIES = {"http": BINANCE_PROXY_URL, "https": BINANCE_PROXY_URL} if BIN
 SETTLE_CCY = "USDT"
 REQUEST_DELAY_SEC = 0.12
 
-EXCHANGES = ["OKX", "BINANCE"]   # comment salah satu baris ini kalau mau nonaktifkan sementara
+EXCHANGES = ["OKX"]   # BINANCE dimatikan sementara (kena blokir 451 dari IP GitHub Actions)
 
 # ============================== FILTER KATEGORI PROYEK ==============================
 # Diambil OTOMATIS tiap kali bot jalan dari CoinGecko (API publik, tanpa API
@@ -576,15 +576,14 @@ def detect_structure(df: pd.DataFrame, order: int = SWING_ORDER, lookback: int =
 
 
 def check_key_4h(df: pd.DataFrame) -> dict:
-    """4H = kunci. WAJIB SEMUA:
+    """4H = kunci. WAJIB:
     1. StochRSI (K) di bawah 50 -- masih ada ruang naik, bukan sudah telat
     2. Golden cross sudah/baru terjadi (K memotong D dari bawah)
-    3. Struktur harga menunjukkan BOS atau CHoCH bullish -- ada BUKTI
-       pergerakan harga yang menembus level penting, bukan cuma oscillator
-       yang naik sementara harga masih terkurung/turun.
-    Kalau salah satu tidak terpenuhi (termasuk golden cross tanpa BOS/CHoCH,
-    persis kasus token yang sudah naik jauh tapi struktur belum konfirmasi),
-    TIDAK lolos."""
+
+    Struktur BOS/CHoCH TIDAK lagi jadi syarat wajib (sempat bikin hasil
+    selalu kosong) -- tetap dihitung dan ditampilkan sebagai KONTEKS supaya
+    kamu yang menilai sendiri apakah strukturnya sudah cukup meyakinkan
+    untuk entry, bukan otomatis digugurkan sistem."""
     close = df["close"]
     rsi_series, k, d = stoch_rsi(close)
     rsi_now = float(rsi_series.iloc[-1])
@@ -594,8 +593,7 @@ def check_key_4h(df: pd.DataFrame) -> dict:
 
     still_room = k_now <= STOCH_OVERSOLD
     golden_cross = crossed_up_recently(k, d)
-    structure = detect_structure(df)
-    structure_ok = structure["bos_up"] or structure["choch_up"]
+    structure = detect_structure(df)  # info konteks, bukan syarat wajib lagi
 
     reasons = []
     if still_room:
@@ -608,7 +606,7 @@ def check_key_4h(df: pd.DataFrame) -> dict:
         reasons.append("CHoCH bullish")
 
     return {
-        "ok": bool(still_room and golden_cross and structure_ok),
+        "ok": bool(still_room and golden_cross),
         "rsi": round(rsi_now, 1),
         "stoch_k": round(k_now, 1),
         "stoch_d": round(d_now, 1),
@@ -830,7 +828,7 @@ def save_results_json(candidates: list, scanned: int, path: str = "docs/results.
         "exchanges": EXCHANGES,
         "candidates_per_exchange": per_exchange,
         "criteria": {
-            "key": f"{BAR_KEY}: StochRSI < {STOCH_OVERSOLD} DAN golden cross DAN struktur BOS/CHoCH bullish (ketiganya wajib)",
+            "key": f"{BAR_KEY}: StochRSI < {STOCH_OVERSOLD} DAN golden cross (wajib). Struktur BOS/CHoCH ditampilkan sebagai konteks, tidak menggugurkan.",
             "confirm": f"{BAR_CONFIRM}: RSI {CONFIRM_RSI_MIN}-{CONFIRM_RSI_MAX}, StochRSI <= {CONFIRM_STOCH_MAX}",
             "timing": f"{BAR_TIMING}: StochRSI/RSI sedang naik",
         },
