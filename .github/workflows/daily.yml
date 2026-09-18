@@ -27,6 +27,7 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
+          BINANCE_PROXY_URL: ${{ secrets.BINANCE_PROXY_URL }}   # opsional, kosongkan kalau belum ada proxy
         run: python main.py
 
       - name: Commit & push hasil scan (docs/results.json)
