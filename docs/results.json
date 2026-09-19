@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-19T11:40:25.044226+00:00",
+  "generated_at": "2026-09-19T14:53:28.118193+00:00",
   "total_scanned": 236,
   "exchanges": [
     "OKX"
   ],
   "candidates_per_exchange": {
-    "OKX": 2
+    "OKX": 1
   },
   "criteria": {
     "key": "4H: StochRSI < 50 DAN golden cross (wajib). Struktur BOS/CHoCH ditampilkan sebagai konteks, tidak menggugurkan.",
@@ -15,82 +15,17 @@
   "candidates": [
     {
       "exchange": "OKX",
-      "inst_id": "ZEC-USDT-SWAP",
-      "price": 1547.95,
+      "inst_id": "AMC-USDT-SWAP",
+      "price": 2.699,
       "key_4h": {
         "ok": true,
-        "rsi": 69.2,
-        "stoch_k": 14.2,
-        "stoch_d": 21.7,
-        "ema_bull": true,
-        "structure_trend": "up",
-        "last_swing_high": 1536.41,
-        "last_swing_low": 1421.0,
-        "reasons": [
-          "StochRSI < 50",
-          "golden cross",
-          "BOS bullish"
-        ]
-      },
-      "confirm_1h": {
-        "ok": true,
-        "rsi": 56.9,
-        "stoch_k": 18.5,
-        "stoch_d": 29.8,
-        "notes": []
-      },
-      "timing_15m": {
-        "ok": true,
-        "rsi": 47.3,
-        "stoch_k": 18.7,
-        "stoch_d": 10.5,
-        "verdict": "siap masuk"
-      },
-      "volume_4h": {
-        "ratio": 0.68,
-        "rising": true
-      },
-      "open_interest": {
-        "available": true,
-        "change_24h_pct": -9.91,
-        "rising": false
-      },
-      "bullish_divergence_4h": false,
-      "plan": {
-        "swing_low": 1040.38,
-        "swing_high": 1598.78,
-        "entries": [
-          1547.95,
-          1385.4712,
-          1319.58
-        ],
-        "avg_entry": 1417.6670666666666,
-        "sl": 1035.1781,
-        "tp1": 1598.78,
-        "tp2": 1750.6648,
-        "tp3": 1943.8711999999998,
-        "rr_to_tp1": 0.47,
-        "rr_healthy": false
-      },
-      "categories": [
-        "L1",
-        "Large-Cap"
-      ],
-      "rank_score": 80.0
-    },
-    {
-      "exchange": "OKX",
-      "inst_id": "SPCX-USDT-SWAP",
-      "price": 152.86,
-      "key_4h": {
-        "ok": true,
-        "rsi": 54.8,
-        "stoch_k": 23.7,
-        "stoch_d": 22.7,
+        "rsi": 62.4,
+        "stoch_k": 11.9,
+        "stoch_d": 11.2,
         "ema_bull": true,
         "structure_trend": "mixed",
-        "last_swing_high": 156.59,
-        "last_swing_low": 150.11,
+        "last_swing_high": 2.759,
+        "last_swing_low": 2.637,
         "reasons": [
           "StochRSI < 50",
           "golden cross"
@@ -98,48 +33,48 @@
       },
       "confirm_1h": {
         "ok": true,
-        "rsi": 47.8,
-        "stoch_k": 79.0,
+        "rsi": 53.2,
+        "stoch_k": 76.3,
         "stoch_d": 79.8,
         "notes": []
       },
       "timing_15m": {
         "ok": true,
-        "rsi": 58.6,
-        "stoch_k": 56.0,
-        "stoch_d": 37.9,
+        "rsi": 57.2,
+        "stoch_k": 41.6,
+        "stoch_d": 24.9,
         "verdict": "siap masuk"
       },
       "volume_4h": {
-        "ratio": 0.05,
-        "rising": false
+        "ratio": 4.64,
+        "rising": true
       },
       "open_interest": {
         "available": true,
-        "change_24h_pct": -11.52,
-        "rising": false
+        "change_24h_pct": 8.47,
+        "rising": true
       },
       "bullish_divergence_4h": false,
       "plan": {
-        "swing_low": 142.51,
-        "swing_high": 156.9,
+        "swing_low": 2.34,
+        "swing_high": 2.77,
         "entries": [
-          152.86,
-          151.40302,
-          149.705
+          2.699,
+          2.60574,
+          2.555
         ],
-        "avg_entry": 151.32267333333334,
-        "sl": 141.79745,
-        "tp1": 156.9,
-        "tp2": 160.81408000000002,
-        "tp3": 165.79302,
-        "rr_to_tp1": 0.59,
+        "avg_entry": 2.6199133333333333,
+        "sl": 2.3283,
+        "tp1": 2.77,
+        "tp2": 2.88696,
+        "tp3": 3.03574,
+        "rr_to_tp1": 0.51,
         "rr_healthy": false
       },
       "categories": [
-        "RWA"
+        "Memecoin"
       ],
-      "rank_score": 60.0
+      "rank_score": 87.0
     }
   ]
 }
