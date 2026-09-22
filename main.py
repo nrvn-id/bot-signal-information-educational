@@ -223,6 +223,7 @@ STOCH_LENGTH = 14
 STOCH_K_SMOOTH = 3
 STOCH_D_SMOOTH = 3
 EMA_FAST, EMA_SLOW = 9, 21
+MACD_FAST, MACD_SLOW, MACD_SIGNAL = 12, 26, 9
 
 STOCH_OVERSOLD = 50        # 4H: StochRSI K wajib di bawah ini (potensi naik masih luas)
 SWING_ORDER = 3            # candle kiri/kanan buat tentukan swing high/low
@@ -447,13 +448,14 @@ def volume_context(df: pd.DataFrame) -> dict:
     return {"ratio": round(float(ratio), 2), "rising": bool(rising)}
 
 
-def bullish_divergence(df: pd.DataFrame, lookback: int = 40) -> bool:
-    """Harga bikin low lebih rendah, RSI bikin low lebih tinggi.
-    Deteksi sederhana -- ini petunjuk lemah, jangan dijadikan penentu."""
+def _bullish_divergence_generic(df: pd.DataFrame, indicator: pd.Series, lookback: int = 40) -> bool:
+    """Harga bikin low lebih rendah, indikator (RSI atau MACD histogram)
+    bikin low lebih tinggi. Deteksi sederhana -- petunjuk lemah, jangan
+    dijadikan penentu."""
     if len(df) < lookback + 5:
         return False
     sub = df.tail(lookback).reset_index(drop=True)
-    rsi_series = rsi(sub["close"]).reset_index(drop=True)
+    ind = indicator.tail(lookback).reset_index(drop=True)
 
     lows = []
     for i in range(2, len(sub) - 2):
@@ -465,8 +467,39 @@ def bullish_divergence(df: pd.DataFrame, lookback: int = 40) -> bool:
 
     i1, i2 = lows[-2], lows[-1]
     price_lower_low = sub["low"].iloc[i2] < sub["low"].iloc[i1]
-    rsi_higher_low = rsi_series.iloc[i2] > rsi_series.iloc[i1]
-    return bool(price_lower_low and rsi_higher_low)
+    ind_higher_low = ind.iloc[i2] > ind.iloc[i1]
+    return bool(price_lower_low and ind_higher_low)
+
+
+def bullish_divergence(df: pd.DataFrame, lookback: int = 40) -> bool:
+    return _bullish_divergence_generic(df, rsi(df["close"]), lookback)
+
+
+def macd_lines(close: pd.Series, fast: int = MACD_FAST, slow: int = MACD_SLOW, signal: int = MACD_SIGNAL):
+    ema_fast = ema(close, fast)
+    ema_slow = ema(close, slow)
+    macd_line = ema_fast - ema_slow
+    signal_line = ema(macd_line, signal)
+    histogram = macd_line - signal_line
+    return macd_line, signal_line, histogram
+
+
+def macd_context(df: pd.DataFrame) -> dict:
+    close = df["close"]
+    macd_line, signal_line, histogram = macd_lines(close)
+
+    macd_now, signal_now, hist_now = float(macd_line.iloc[-1]), float(signal_line.iloc[-1]), float(histogram.iloc[-1])
+    hist_prev = float(histogram.iloc[-2]) if len(histogram) > 1 else hist_now
+
+    return {
+        "bullish": bool(macd_now > signal_now),
+        "cross_recent": crossed_up_recently(macd_line, signal_line),
+        "histogram_rising": bool(hist_now > hist_prev),
+        "macd": round(macd_now, 6),
+        "signal": round(signal_now, 6),
+        "histogram": round(hist_now, 6),
+        "bullish_divergence": _bullish_divergence_generic(df, histogram),
+    }
 
 
 def fibonacci_plan(df: pd.DataFrame, price: float) -> dict:
@@ -718,6 +751,7 @@ def scan_instrument(exchange: str, inst_id: str):
         "volume_4h": volume_context(df_4h),
         "open_interest": oi,
         "bullish_divergence_4h": bullish_divergence(df_4h),
+        "macd_4h": macd_context(df_4h),
         "plan": plan,
     }
 
@@ -736,6 +770,13 @@ def rank_score(c: dict) -> float:
     if oi.get("available") and oi.get("rising"):
         s += 12
     if c["bullish_divergence_4h"]:
+        s += 5
+    macd = c["macd_4h"]
+    if macd["bullish"]:
+        s += 10          # MACD sudah ikut confirm (bukan cuma RSI/EMA duluan)
+    if macd["cross_recent"]:
+        s += 8            # baru saja cross -- momentum makin lengkap
+    if macd["bullish_divergence"]:
         s += 5
     if c["plan"]["rr_healthy"]:
         s += 15
@@ -756,17 +797,23 @@ def format_candidate_block(c: dict) -> str:
     oi_txt = (f"{oi['change_24h_pct']:+.2f}% (24j)" if oi.get("available") else "n/a")
     vol = c["volume_4h"]
 
+    macd = c["macd_4h"]
+    macd_status = "bullish" if macd["bullish"] else "masih bearish"
+    macd_flag = " (baru cross)" if macd["cross_recent"] else ""
     lines = [
         f"🟢 *[{c['exchange']}] {c['inst_id']}* ({'/'.join(c['categories'])}) — skor {c['rank_score']}",
         f"Harga: {fmt(c['price'])}",
         f"4H: {' + '.join(c['key_4h']['reasons'])} | RSI {c['key_4h']['rsi']} | StochRSI {c['key_4h']['stoch_k']}/{c['key_4h']['stoch_d']}",
         f"    Struktur: {c['key_4h']['structure_trend']} | swing high terakhir: {fmt(c['key_4h']['last_swing_high'])}",
+        f"    MACD: {macd_status}{macd_flag} | histogram {macd['histogram']} ({'naik' if macd['histogram_rising'] else 'turun'})",
         f"1H: RSI {c['confirm_1h']['rsi']} | StochRSI {c['confirm_1h']['stoch_k']}/{c['confirm_1h']['stoch_d']}",
         f"15m: {c['timing_15m']['verdict']} (K {c['timing_15m']['stoch_k']})",
         f"Volume 4H: {vol['ratio']}x rata-rata | OI: {oi_txt}",
     ]
     if c["bullish_divergence_4h"]:
-        lines.append("Terdeteksi bullish divergence 4H (petunjuk lemah)")
+        lines.append("Terdeteksi bullish divergence RSI 4H (petunjuk lemah)")
+    if macd["bullish_divergence"]:
+        lines.append("Terdeteksi bullish divergence MACD 4H (petunjuk lemah)")
 
     lines += [
         "",
