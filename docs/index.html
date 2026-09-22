@@ -54,6 +54,11 @@
   <div id="results"><div class="loading">Memuat hasil scan terakhir...</div></div>
 
 <script>
+  function displayPair(exchange, instId){
+    if (exchange === 'OKX') return instId.replace('-USDT-SWAP', '/USDT');
+    if (exchange === 'BINANCE') return instId.endsWith('USDT') ? instId.slice(0, -4) + '/USDT' : instId;
+    return instId;
+  }
   function fmt(v){
     if (v === null || v === undefined) return '-';
     const n = Number(v);
@@ -101,13 +106,14 @@
         <div class="card">
           <div class="card-head">
             <div>
-              <div class="pair-name">${c.inst_id.replace('-USDT-SWAP','/USDT')}</div>
+              <div class="pair-name"><span class="badge" style="margin:0 6px 0 0">${c.exchange}</span>${displayPair(c.exchange, c.inst_id)} <span style="color:var(--muted); font-weight:400; font-size:11.5px">${(c.categories||[]).join(' / ')}</span></div>
               <div class="pair-price">Harga: ${fmt(c.price)}</div>
             </div>
             <div class="score">${c.rank_score}</div>
           </div>
           <div class="tf-line">4H <span class="tf-tag">${c.key_4h.reasons.join(' + ')}</span> — RSI <b>${c.key_4h.rsi}</b>, StochRSI <b>${c.key_4h.stoch_k}/${c.key_4h.stoch_d}</b></div>
           <div class="tf-line">Struktur 4H: <b>${c.key_4h.structure_trend}</b> — swing high terakhir <b>${fmt(c.key_4h.last_swing_high)}</b></div>
+          <div class="tf-line">MACD 4H: <b class="${c.macd_4h.bullish ? 'up' : 'down'}">${c.macd_4h.bullish ? 'bullish' : 'bearish'}</b>${c.macd_4h.cross_recent ? ' (baru cross)' : ''} — histogram <b>${c.macd_4h.histogram}</b> (${c.macd_4h.histogram_rising ? 'naik' : 'turun'})${c.macd_4h.bullish_divergence ? '<br><i>Terdeteksi bullish divergence MACD (petunjuk lemah)</i>' : ''}</div>
           <div class="tf-line">1H konfirmasi — RSI <b>${c.confirm_1h.rsi}</b>, StochRSI <b>${c.confirm_1h.stoch_k}/${c.confirm_1h.stoch_d}</b></div>
           <div class="tf-line">15m timing — <span class="tf-tag">${c.timing_15m.verdict}</span> (K <b>${c.timing_15m.stoch_k}</b>)</div>
           <div class="ctx">Volume 4H: <b>${vol.ratio}x</b> rata-rata &nbsp;|&nbsp; Open Interest 24j: ${oiTxt}${divTxt}</div>
