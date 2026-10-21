@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-21T00:17:25.550529+00:00",
-  "total_scanned": 240,
+  "generated_at": "2026-10-21T05:26:48.808201+00:00",
+  "total_scanned": 239,
   "exchanges": [
     "OKX"
   ],
   "candidates_per_exchange": {
-    "OKX": 2
+    "OKX": 3
   },
   "criteria": {
     "key": "4H: StochRSI < 50 DAN golden cross (wajib). Struktur BOS/CHoCH ditampilkan sebagai konteks, tidak menggugurkan.",
@@ -15,87 +15,13 @@
   "candidates": [
     {
       "exchange": "OKX",
-      "inst_id": "ANTHROPIC-USDT-SWAP",
-      "price": 196.97,
-      "key_4h": {
-        "ok": true,
-        "rsi": 53.7,
-        "stoch_k": 46.9,
-        "stoch_d": 42.9,
-        "ema_bull": true,
-        "structure_trend": "down",
-        "last_swing_high": 198.31,
-        "last_swing_low": 186.12,
-        "reasons": [
-          "StochRSI < 50",
-          "golden cross"
-        ]
-      },
-      "confirm_1h": {
-        "ok": true,
-        "rsi": 58.1,
-        "stoch_k": 80.9,
-        "stoch_d": 60.0,
-        "notes": [
-          "StochRSI bullish"
-        ]
-      },
-      "timing_15m": {
-        "ok": true,
-        "rsi": 74.2,
-        "stoch_k": 100.0,
-        "stoch_d": 99.9,
-        "verdict": "mulai berbelok naik"
-      },
-      "volume_4h": {
-        "ratio": 0.06,
-        "rising": false
-      },
-      "open_interest": {
-        "available": true,
-        "change_24h_pct": 1.63,
-        "rising": true
-      },
-      "bullish_divergence_4h": false,
-      "macd_4h": {
-        "bullish": true,
-        "cross_recent": false,
-        "histogram_rising": true,
-        "macd": 0.177483,
-        "signal": -0.173487,
-        "histogram": 0.35097,
-        "bullish_divergence": false
-      },
-      "plan": {
-        "swing_low": 181.3,
-        "swing_high": 210.72,
-        "entries": [
-          196.97,
-          196.01,
-          192.53844
-        ],
-        "avg_entry": 195.17281333333335,
-        "sl": 180.39350000000002,
-        "tp1": 210.72,
-        "tp2": 218.72224,
-        "tp3": 228.90156,
-        "rr_to_tp1": 1.05,
-        "rr_healthy": false
-      },
-      "categories": [
-        "RWA"
-      ],
-      "rank_score": 72.0
-    },
-    {
-      "exchange": "OKX",
       "inst_id": "GMX-USDT-SWAP",
-      "price": 8.014,
+      "price": 8.021,
       "key_4h": {
         "ok": true,
-        "rsi": 37.2,
-        "stoch_k": 10.2,
-        "stoch_d": 4.8,
+        "rsi": 37.5,
+        "stoch_k": 17.1,
+        "stoch_d": 10.5,
         "ema_bull": false,
         "structure_trend": "down",
         "last_swing_high": 8.353,
@@ -107,27 +33,173 @@
       },
       "confirm_1h": {
         "ok": true,
-        "rsi": 41.0,
-        "stoch_k": 54.8,
-        "stoch_d": 52.9,
+        "rsi": 42.6,
+        "stoch_k": 67.6,
+        "stoch_d": 57.8,
         "notes": [
           "StochRSI bullish"
         ]
       },
       "timing_15m": {
         "ok": true,
-        "rsi": 46.8,
-        "stoch_k": 35.5,
-        "stoch_d": 35.9,
-        "verdict": "mulai berbelok naik"
+        "rsi": 51.0,
+        "stoch_k": 73.1,
+        "stoch_d": 64.2,
+        "verdict": "siap masuk"
       },
       "volume_4h": {
-        "ratio": 0.05,
+        "ratio": 0.47,
         "rising": false
       },
       "open_interest": {
         "available": true,
-        "change_24h_pct": -0.13,
+        "change_24h_pct": 0.42,
+        "rising": true
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.138623,
+        "signal": -0.106585,
+        "histogram": -0.032038,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 7.769,
+        "swing_high": 9.148,
+        "entries": [
+          8.021,
+          7.900685,
+          7.78217473
+        ],
+        "avg_entry": 7.901286576666667,
+        "sl": 7.730155,
+        "tp1": 9.148,
+        "tp2": 9.523088,
+        "tp3": 10.000221999999999,
+        "rr_to_tp1": 7.29,
+        "rr_healthy": true
+      },
+      "categories": [
+        "DeFi"
+      ],
+      "rank_score": 77.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "ANTHROPIC-USDT-SWAP",
+      "price": 194.31,
+      "key_4h": {
+        "ok": true,
+        "rsi": 47.4,
+        "stoch_k": 37.5,
+        "stoch_d": 36.2,
+        "ema_bull": true,
+        "structure_trend": "down",
+        "last_swing_high": 198.31,
+        "last_swing_low": 186.12,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 46.5,
+        "stoch_k": 63.8,
+        "stoch_d": 61.3,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 49.3,
+        "stoch_k": 27.9,
+        "stoch_d": 44.9,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.35,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -0.08,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": true,
+        "cross_recent": false,
+        "histogram_rising": false,
+        "macd": -0.111271,
+        "signal": -0.195506,
+        "histogram": 0.084235,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 181.3,
+        "swing_high": 210.72,
+        "entries": [
+          194.31,
+          192.53844,
+          187.59588
+        ],
+        "avg_entry": 191.48144,
+        "sl": 180.39350000000002,
+        "tp1": 210.72,
+        "tp2": 218.72224,
+        "tp3": 228.90156,
+        "rr_to_tp1": 1.74,
+        "rr_healthy": true
+      },
+      "categories": [
+        "RWA"
+      ],
+      "rank_score": 75.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "KII-USDT-SWAP",
+      "price": 0.08758,
+      "key_4h": {
+        "ok": true,
+        "rsi": 44.5,
+        "stoch_k": 21.2,
+        "stoch_d": 12.6,
+        "ema_bull": false,
+        "structure_trend": "mixed",
+        "last_swing_high": 0.0887,
+        "last_swing_low": 0.08684,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 47.5,
+        "stoch_k": 65.1,
+        "stoch_d": 73.2,
+        "notes": []
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 50.7,
+        "stoch_k": 23.0,
+        "stoch_d": 13.3,
+        "verdict": "siap masuk"
+      },
+      "volume_4h": {
+        "ratio": 0.18,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -1.64,
         "rising": false
       },
       "bullish_divergence_4h": false,
@@ -135,31 +207,31 @@
         "bullish": false,
         "cross_recent": false,
         "histogram_rising": true,
-        "macd": -0.136686,
-        "signal": -0.098592,
-        "histogram": -0.038094,
+        "macd": -0.000101,
+        "signal": -3e-06,
+        "histogram": -9.8e-05,
         "bullish_divergence": false
       },
       "plan": {
-        "swing_low": 7.769,
-        "swing_high": 9.148,
+        "swing_low": 0.08629,
+        "swing_high": 0.08933,
         "entries": [
-          8.014,
-          7.89379,
-          7.77538315
+          0.08758,
+          0.08745128,
+          0.08694056
         ],
-        "avg_entry": 7.894391049999999,
-        "sl": 7.730155,
-        "tp1": 9.148,
-        "tp2": 9.523088,
-        "tp3": 10.000221999999999,
-        "rr_to_tp1": 7.63,
-        "rr_healthy": true
+        "avg_entry": 0.08732394666666667,
+        "sl": 0.08585855,
+        "tp1": 0.08933,
+        "tp2": 0.09015688000000001,
+        "tp3": 0.09120872000000001,
+        "rr_to_tp1": 1.37,
+        "rr_healthy": false
       },
       "categories": [
-        "DeFi"
+        "L2"
       ],
-      "rank_score": 55.0
+      "rank_score": 50.0
     }
   ]
 }
