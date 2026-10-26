@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-26T00:48:52.822373+00:00",
-  "total_scanned": 240,
+  "generated_at": "2026-10-26T05:31:24.034501+00:00",
+  "total_scanned": 241,
   "exchanges": [
     "OKX"
   ],
   "candidates_per_exchange": {
-    "OKX": 9
+    "OKX": 27
   },
   "criteria": {
     "key": "4H: StochRSI < 50 DAN golden cross (wajib). Struktur BOS/CHoCH ditampilkan sebagai konteks, tidak menggugurkan.",
@@ -15,17 +15,17 @@
   "candidates": [
     {
       "exchange": "OKX",
-      "inst_id": "F-USDT-SWAP",
-      "price": 0.002968,
+      "inst_id": "SOPH-USDT-SWAP",
+      "price": 0.001412,
       "key_4h": {
         "ok": true,
-        "rsi": 44.6,
-        "stoch_k": 10.8,
-        "stoch_d": 12.9,
+        "rsi": 37.2,
+        "stoch_k": 13.8,
+        "stoch_d": 12.7,
         "ema_bull": false,
         "structure_trend": "mixed",
-        "last_swing_high": 0.003546,
-        "last_swing_low": 0.002857,
+        "last_swing_high": 0.002215,
+        "last_swing_low": 0.001426,
         "reasons": [
           "StochRSI < 50",
           "golden cross"
@@ -33,25 +33,99 @@
       },
       "confirm_1h": {
         "ok": true,
-        "rsi": 43.2,
-        "stoch_k": 56.4,
-        "stoch_d": 64.8,
+        "rsi": 40.7,
+        "stoch_k": 31.6,
+        "stoch_d": 51.7,
         "notes": []
       },
       "timing_15m": {
         "ok": true,
-        "rsi": 43.6,
-        "stoch_k": 73.3,
-        "stoch_d": 71.8,
+        "rsi": 39.6,
+        "stoch_k": 23.9,
+        "stoch_d": 14.1,
         "verdict": "siap masuk"
       },
       "volume_4h": {
-        "ratio": 0.04,
+        "ratio": 0.11,
         "rising": false
       },
       "open_interest": {
         "available": true,
-        "change_24h_pct": 2.5,
+        "change_24h_pct": -9.62,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": true,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -9.7e-05,
+        "signal": -9.9e-05,
+        "histogram": 3e-06,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.001385,
+        "swing_high": 0.002447,
+        "entries": [
+          0.001412,
+          0.00139082,
+          0.00136996
+        ],
+        "avg_entry": 0.0013909266666666668,
+        "sl": 0.0013780749999999999,
+        "tp1": 0.002447,
+        "tp2": 0.002735864,
+        "tp3": 0.003103316,
+        "rr_to_tp1": 82.17,
+        "rr_healthy": true
+      },
+      "categories": [
+        "L2"
+      ],
+      "rank_score": 75.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "BB-USDT-SWAP",
+      "price": 8.954,
+      "key_4h": {
+        "ok": true,
+        "rsi": 55.7,
+        "stoch_k": 13.8,
+        "stoch_d": 12.1,
+        "ema_bull": true,
+        "structure_trend": "up",
+        "last_swing_high": 9.07,
+        "last_swing_low": 8.824,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 53.8,
+        "stoch_k": 74.5,
+        "stoch_d": 56.7,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 58.6,
+        "stoch_k": 97.6,
+        "stoch_d": 93.3,
+        "verdict": "siap masuk"
+      },
+      "volume_4h": {
+        "ratio": 0.16,
+        "rising": true
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": 0.58,
         "rising": true
       },
       "bullish_divergence_4h": false,
@@ -59,45 +133,45 @@
         "bullish": false,
         "cross_recent": false,
         "histogram_rising": true,
-        "macd": -8e-06,
-        "signal": 1.7e-05,
-        "histogram": -2.5e-05,
+        "macd": 0.059779,
+        "signal": 0.073846,
+        "histogram": -0.014067,
         "bullish_divergence": false
       },
       "plan": {
-        "swing_low": 0.002739,
-        "swing_high": 0.003546,
+        "swing_low": 7.725,
+        "swing_high": 9.52,
         "entries": [
-          0.002968,
-          0.0029117,
-          0.00286802
+          8.954,
+          8.83431,
+          8.6225
         ],
-        "avg_entry": 0.002915906666666667,
-        "sl": 0.002725305,
-        "tp1": 0.003546,
-        "tp2": 0.0037655040000000002,
-        "tp3": 0.004044726,
-        "rr_to_tp1": 3.31,
-        "rr_healthy": true
+        "avg_entry": 8.803603333333335,
+        "sl": 7.686375,
+        "tp1": 9.52,
+        "tp2": 10.008239999999999,
+        "tp3": 10.62931,
+        "rr_to_tp1": 0.64,
+        "rr_healthy": false
       },
       "categories": [
-        "DeFi"
+        "L2"
       ],
-      "rank_score": 77.0
+      "rank_score": 72.0
     },
     {
       "exchange": "OKX",
-      "inst_id": "ANIME-USDT-SWAP",
-      "price": 0.002892,
+      "inst_id": "CRV-USDT-SWAP",
+      "price": 0.345,
       "key_4h": {
         "ok": true,
-        "rsi": 47.3,
-        "stoch_k": 1.5,
-        "stoch_d": 1.3,
-        "ema_bull": true,
-        "structure_trend": "up",
-        "last_swing_high": 0.004078,
-        "last_swing_low": 0.002738,
+        "rsi": 39.8,
+        "stoch_k": 25.9,
+        "stoch_d": 11.4,
+        "ema_bull": false,
+        "structure_trend": "down",
+        "last_swing_high": 0.357,
+        "last_swing_low": 0.3443,
         "reasons": [
           "StochRSI < 50",
           "golden cross"
@@ -105,67 +179,518 @@
       },
       "confirm_1h": {
         "ok": true,
-        "rsi": 43.1,
-        "stoch_k": 25.1,
-        "stoch_d": 27.8,
-        "notes": []
+        "rsi": 51.0,
+        "stoch_k": 73.7,
+        "stoch_d": 53.7,
+        "notes": [
+          "StochRSI bullish"
+        ]
       },
       "timing_15m": {
         "ok": true,
-        "rsi": 45.1,
-        "stoch_k": 56.3,
-        "stoch_d": 46.9,
+        "rsi": 63.2,
+        "stoch_k": 100.0,
+        "stoch_d": 94.7,
         "verdict": "siap masuk"
       },
       "volume_4h": {
-        "ratio": 0.09,
+        "ratio": 0.46,
         "rising": false
       },
       "open_interest": {
         "available": true,
-        "change_24h_pct": -29.51,
+        "change_24h_pct": -1.08,
         "rising": false
       },
       "bullish_divergence_4h": false,
       "macd_4h": {
         "bullish": false,
         "cross_recent": false,
-        "histogram_rising": false,
-        "macd": 3e-05,
-        "signal": 5.7e-05,
-        "histogram": -2.7e-05,
-        "bullish_divergence": false
+        "histogram_rising": true,
+        "macd": -0.006407,
+        "signal": -0.005516,
+        "histogram": -0.000891,
+        "bullish_divergence": true
       },
       "plan": {
-        "swing_low": 0.002543,
-        "swing_high": 0.004078,
+        "swing_low": 0.3274,
+        "swing_high": 0.4093,
         "entries": [
-          0.002892,
-          0.00287149,
-          0.00282842
+          0.345,
+          0.3449266,
+          0.3397527
         ],
-        "avg_entry": 0.00286397,
-        "sl": 0.002530285,
-        "tp1": 0.004078,
-        "tp2": 0.00449552,
-        "tp3": 0.00502663,
-        "rr_to_tp1": 3.64,
+        "avg_entry": 0.3432264333333333,
+        "sl": 0.325763,
+        "tp1": 0.4093,
+        "tp2": 0.4315768,
+        "tp3": 0.4599142,
+        "rr_to_tp1": 3.78,
         "rr_healthy": true
       },
       "categories": [
+        "DeFi",
+        "Mid-Cap"
+      ],
+      "rank_score": 70.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "FOGO-USDT-SWAP",
+      "price": 0.003815,
+      "key_4h": {
+        "ok": true,
+        "rsi": 42.4,
+        "stoch_k": 19.8,
+        "stoch_d": 9.0,
+        "ema_bull": false,
+        "structure_trend": "down",
+        "last_swing_high": 0.004049,
+        "last_swing_low": 0.003763,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 48.7,
+        "stoch_k": 65.4,
+        "stoch_d": 44.9,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 59.0,
+        "stoch_k": 100.0,
+        "stoch_d": 92.7,
+        "verdict": "siap masuk"
+      },
+      "volume_4h": {
+        "ratio": 0.29,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -2.76,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -7e-05,
+        "signal": -5.9e-05,
+        "histogram": -1e-05,
+        "bullish_divergence": true
+      },
+      "plan": {
+        "swing_low": 0.00361,
+        "swing_high": 0.00441,
+        "entries": [
+          0.003815,
+          0.0037812,
+          0.00372448
+        ],
+        "avg_entry": 0.00377356,
+        "sl": 0.00359195,
+        "tp1": 0.00441,
+        "tp2": 0.0046276,
+        "tp3": 0.0049044,
+        "rr_to_tp1": 3.5,
+        "rr_healthy": true
+      },
+      "categories": [
+        "DeFi",
+        "L1"
+      ],
+      "rank_score": 70.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "AI-USDT-SWAP",
+      "price": 0.01863,
+      "key_4h": {
+        "ok": true,
+        "rsi": 56.8,
+        "stoch_k": 20.7,
+        "stoch_d": 10.9,
+        "ema_bull": true,
+        "structure_trend": "up",
+        "last_swing_high": 0.02031,
+        "last_swing_low": 0.01694,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 59.5,
+        "stoch_k": 81.9,
+        "stoch_d": 51.8,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 75.6,
+        "stoch_k": 100.0,
+        "stoch_d": 100.0,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 1.03,
+        "rising": true
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": 22.74,
+        "rising": true
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": 0.000107,
+        "signal": 0.000153,
+        "histogram": -4.6e-05,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.01608,
+        "swing_high": 0.02031,
+        "entries": [
+          0.01863,
+          0.018195,
+          0.01769586
+        ],
+        "avg_entry": 0.018173619999999998,
+        "sl": 0.0159996,
+        "tp1": 0.02031,
+        "tp2": 0.021460560000000004,
+        "tp3": 0.022924140000000003,
+        "rr_to_tp1": 0.98,
+        "rr_healthy": false
+      },
+      "categories": [
+        "AI",
         "Memecoin"
       ],
-      "rank_score": 75.0
+      "rank_score": 69.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "ALLO-USDT-SWAP",
+      "price": 0.18198,
+      "key_4h": {
+        "ok": true,
+        "rsi": 34.1,
+        "stoch_k": 48.2,
+        "stoch_d": 34.3,
+        "ema_bull": false,
+        "structure_trend": "down",
+        "last_swing_high": 0.20384,
+        "last_swing_low": 0.17912,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 46.5,
+        "stoch_k": 75.2,
+        "stoch_d": 50.6,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 56.1,
+        "stoch_k": 93.3,
+        "stoch_d": 93.8,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.33,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": 0.81,
+        "rising": true
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.005913,
+        "signal": -0.005889,
+        "histogram": -2.4e-05,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.17912,
+        "swing_high": 0.23067,
+        "entries": [
+          0.18198,
+          0.1792503,
+          0.17656155
+        ],
+        "avg_entry": 0.17926395000000003,
+        "sl": 0.1782244,
+        "tp1": 0.23067,
+        "tp2": 0.24469159999999998,
+        "tp3": 0.2625279,
+        "rr_to_tp1": 49.45,
+        "rr_healthy": true
+      },
+      "categories": [
+        "AI"
+      ],
+      "rank_score": 67.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "NIGHT-USDT-SWAP",
+      "price": 0.036976,
+      "key_4h": {
+        "ok": true,
+        "rsi": 41.8,
+        "stoch_k": 33.3,
+        "stoch_d": 38.8,
+        "ema_bull": false,
+        "structure_trend": "down",
+        "last_swing_high": 0.038718,
+        "last_swing_low": 0.036254,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 47.7,
+        "stoch_k": 41.3,
+        "stoch_d": 21.1,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 61.1,
+        "stoch_k": 98.4,
+        "stoch_d": 98.4,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.35,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": 7.04,
+        "rising": true
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.000768,
+        "signal": -0.000714,
+        "histogram": -5.4e-05,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.036046,
+        "swing_high": 0.044792,
+        "entries": [
+          0.036976,
+          0.03642136,
+          0.03587504
+        ],
+        "avg_entry": 0.03642413333333333,
+        "sl": 0.03586577,
+        "tp1": 0.044792,
+        "tp2": 0.047170911999999995,
+        "tp3": 0.050197028,
+        "rr_to_tp1": 14.99,
+        "rr_healthy": true
+      },
+      "categories": [
+        "L1",
+        "Mid-Cap"
+      ],
+      "rank_score": 67.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "A-USDT-SWAP",
+      "price": 0.08744,
+      "key_4h": {
+        "ok": true,
+        "rsi": 37.7,
+        "stoch_k": 12.2,
+        "stoch_d": 9.5,
+        "ema_bull": false,
+        "structure_trend": "down",
+        "last_swing_high": 0.09626,
+        "last_swing_low": 0.08717,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 42.8,
+        "stoch_k": 65.6,
+        "stoch_d": 40.5,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 53.4,
+        "stoch_k": 99.1,
+        "stoch_d": 91.3,
+        "verdict": "siap masuk"
+      },
+      "volume_4h": {
+        "ratio": 0.19,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -6.29,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.001873,
+        "signal": -0.001614,
+        "histogram": -0.000259,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.08376,
+        "swing_high": 0.11587,
+        "entries": [
+          0.08744,
+          0.0861284,
+          0.08483647
+        ],
+        "avg_entry": 0.08613495666666666,
+        "sl": 0.0833412,
+        "tp1": 0.11587,
+        "tp2": 0.12460392,
+        "tp3": 0.13571398,
+        "rr_to_tp1": 10.64,
+        "rr_healthy": true
+      },
+      "categories": [
+        "L1"
+      ],
+      "rank_score": 65.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "AEVO-USDT-SWAP",
+      "price": 0.02152,
+      "key_4h": {
+        "ok": true,
+        "rsi": 41.6,
+        "stoch_k": 16.8,
+        "stoch_d": 10.6,
+        "ema_bull": false,
+        "structure_trend": "mixed",
+        "last_swing_high": 0.02283,
+        "last_swing_low": 0.02142,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 49.7,
+        "stoch_k": 78.9,
+        "stoch_d": 46.1,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 63.0,
+        "stoch_k": 100.0,
+        "stoch_d": 98.4,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.15,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -6.25,
+        "rising": false
+      },
+      "bullish_divergence_4h": true,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.000299,
+        "signal": -0.000262,
+        "histogram": -3.7e-05,
+        "bullish_divergence": true
+      },
+      "plan": {
+        "swing_low": 0.02105,
+        "swing_high": 0.02433,
+        "entries": [
+          0.02152,
+          0.0211972,
+          0.02087924
+        ],
+        "avg_entry": 0.021198813333333334,
+        "sl": 0.020944749999999998,
+        "tp1": 0.02433,
+        "tp2": 0.02522216,
+        "tp3": 0.02635704,
+        "rr_to_tp1": 12.32,
+        "rr_healthy": true
+      },
+      "categories": [
+        "DeFi",
+        "L2"
+      ],
+      "rank_score": 65.0
     },
     {
       "exchange": "OKX",
       "inst_id": "AIXBT-USDT-SWAP",
-      "price": 0.01841,
+      "price": 0.01832,
       "key_4h": {
         "ok": true,
-        "rsi": 41.4,
-        "stoch_k": 29.5,
-        "stoch_d": 27.5,
+        "rsi": 41.3,
+        "stoch_k": 22.5,
+        "stoch_d": 23.1,
         "ema_bull": false,
         "structure_trend": "down",
         "last_swing_high": 0.01982,
@@ -177,27 +702,27 @@
       },
       "confirm_1h": {
         "ok": true,
-        "rsi": 47.3,
-        "stoch_k": 65.7,
-        "stoch_d": 57.1,
+        "rsi": 47.1,
+        "stoch_k": 41.4,
+        "stoch_d": 23.9,
         "notes": [
           "StochRSI bullish"
         ]
       },
       "timing_15m": {
         "ok": true,
-        "rsi": 52.6,
-        "stoch_k": 93.2,
-        "stoch_d": 91.2,
+        "rsi": 57.0,
+        "stoch_k": 100.0,
+        "stoch_d": 97.9,
         "verdict": "mulai berbelok naik"
       },
       "volume_4h": {
-        "ratio": 0.06,
+        "ratio": 0.16,
         "rising": false
       },
       "open_interest": {
         "available": true,
-        "change_24h_pct": -4.83,
+        "change_24h_pct": -4.32,
         "rising": false
       },
       "bullish_divergence_4h": true,
@@ -205,25 +730,25 @@
         "bullish": false,
         "cross_recent": false,
         "histogram_rising": true,
-        "macd": -0.000252,
-        "signal": -0.000199,
-        "histogram": -5.3e-05,
+        "macd": -0.000274,
+        "signal": -0.000218,
+        "histogram": -5.6e-05,
         "bullish_divergence": true
       },
       "plan": {
         "swing_low": 0.01759,
         "swing_high": 0.02033,
         "entries": [
-          0.01841,
+          0.01832,
           0.01817636,
           0.01790371
         ],
-        "avg_entry": 0.01816335666666667,
+        "avg_entry": 0.018133356666666666,
         "sl": 0.01750205,
         "tp1": 0.02033,
         "tp2": 0.021075280000000002,
         "tp3": 0.02202332,
-        "rr_to_tp1": 3.28,
+        "rr_to_tp1": 3.48,
         "rr_healthy": true
       },
       "categories": [
@@ -234,13 +759,681 @@
     },
     {
       "exchange": "OKX",
-      "inst_id": "CP-USDT-SWAP",
-      "price": 0.008905,
+      "inst_id": "API3-USDT-SWAP",
+      "price": 0.2506,
       "key_4h": {
         "ok": true,
-        "rsi": 44.1,
-        "stoch_k": 3.8,
-        "stoch_d": 2.8,
+        "rsi": 36.8,
+        "stoch_k": 35.4,
+        "stoch_d": 26.9,
+        "ema_bull": false,
+        "structure_trend": "down",
+        "last_swing_high": 0.2712,
+        "last_swing_low": 0.2506,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 47.2,
+        "stoch_k": 56.6,
+        "stoch_d": 27.1,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 59.3,
+        "stoch_k": 100.0,
+        "stoch_d": 98.5,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.17,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -3.14,
+        "rising": false
+      },
+      "bullish_divergence_4h": true,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.005781,
+        "signal": -0.005446,
+        "histogram": -0.000335,
+        "bullish_divergence": true
+      },
+      "plan": {
+        "swing_low": 0.2456,
+        "swing_high": 0.2946,
+        "entries": [
+          0.2506,
+          0.246841,
+          0.24313838
+        ],
+        "avg_entry": 0.24685979333333333,
+        "sl": 0.244372,
+        "tp1": 0.2946,
+        "tp2": 0.307928,
+        "tp3": 0.32488199999999995,
+        "rr_to_tp1": 19.19,
+        "rr_healthy": true
+      },
+      "categories": [
+        "DeFi"
+      ],
+      "rank_score": 65.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "ATH-USDT-SWAP",
+      "price": 0.005609,
+      "key_4h": {
+        "ok": true,
+        "rsi": 43.1,
+        "stoch_k": 14.3,
+        "stoch_d": 4.8,
+        "ema_bull": false,
+        "structure_trend": "down",
+        "last_swing_high": 0.005918,
+        "last_swing_low": 0.005677,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 45.0,
+        "stoch_k": 53.3,
+        "stoch_d": 27.5,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 57.7,
+        "stoch_k": 100.0,
+        "stoch_d": 89.1,
+        "verdict": "siap masuk"
+      },
+      "volume_4h": {
+        "ratio": 0.13,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -5.92,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -7.6e-05,
+        "signal": -3.1e-05,
+        "histogram": -4.4e-05,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.005177,
+        "swing_high": 0.006731,
+        "entries": [
+          0.005609,
+          0.00550956,
+          0.00542691
+        ],
+        "avg_entry": 0.0055151566666666665,
+        "sl": 0.005151115,
+        "tp1": 0.006731,
+        "tp2": 0.007153688,
+        "tp3": 0.007691372,
+        "rr_to_tp1": 3.34,
+        "rr_healthy": true
+      },
+      "categories": [
+        "AI"
+      ],
+      "rank_score": 65.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "HUMA-USDT-SWAP",
+      "price": 0.02295,
+      "key_4h": {
+        "ok": true,
+        "rsi": 30.7,
+        "stoch_k": 13.5,
+        "stoch_d": 5.5,
+        "ema_bull": false,
+        "structure_trend": "mixed",
+        "last_swing_high": 0.02702,
+        "last_swing_low": 0.02589,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 42.1,
+        "stoch_k": 58.4,
+        "stoch_d": 35.2,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 56.0,
+        "stoch_k": 91.2,
+        "stoch_d": 76.2,
+        "verdict": "siap masuk"
+      },
+      "volume_4h": {
+        "ratio": 0.93,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -12.45,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.001361,
+        "signal": -0.001187,
+        "histogram": -0.000174,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.02188,
+        "swing_high": 0.03172,
+        "entries": [
+          0.02295,
+          0.02260575,
+          0.02226666
+        ],
+        "avg_entry": 0.02260747,
+        "sl": 0.0217706,
+        "tp1": 0.03172,
+        "tp2": 0.03439648,
+        "tp3": 0.037801119999999994,
+        "rr_to_tp1": 10.89,
+        "rr_healthy": true
+      },
+      "categories": [
+        "DeFi"
+      ],
+      "rank_score": 65.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "LA-USDT-SWAP",
+      "price": 0.05888,
+      "key_4h": {
+        "ok": true,
+        "rsi": 52.5,
+        "stoch_k": 11.5,
+        "stoch_d": 6.5,
+        "ema_bull": false,
+        "structure_trend": "up",
+        "last_swing_high": 0.0714,
+        "last_swing_low": 0.05577,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 55.3,
+        "stoch_k": 76.4,
+        "stoch_d": 43.3,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 69.8,
+        "stoch_k": 98.5,
+        "stoch_d": 98.2,
+        "verdict": "siap masuk"
+      },
+      "volume_4h": {
+        "ratio": 0.22,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -17.37,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": 0.000152,
+        "signal": 0.000642,
+        "histogram": -0.00049,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.05042,
+        "swing_high": 0.0714,
+        "entries": [
+          0.05888,
+          0.05843436,
+          0.05490972
+        ],
+        "avg_entry": 0.05740802666666667,
+        "sl": 0.0501679,
+        "tp1": 0.0714,
+        "tp2": 0.07710656,
+        "tp3": 0.08436564,
+        "rr_to_tp1": 1.93,
+        "rr_healthy": true
+      },
+      "categories": [
+        "AI"
+      ],
+      "rank_score": 65.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "BSB-USDT-SWAP",
+      "price": 0.09957,
+      "key_4h": {
+        "ok": true,
+        "rsi": 55.1,
+        "stoch_k": 21.1,
+        "stoch_d": 19.4,
+        "ema_bull": true,
+        "structure_trend": "up",
+        "last_swing_high": 0.10399,
+        "last_swing_low": 0.09708,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 52.2,
+        "stoch_k": 44.9,
+        "stoch_d": 23.3,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 60.5,
+        "stoch_k": 97.6,
+        "stoch_d": 98.4,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.54,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": 5.26,
+        "rising": true
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": 0.001593,
+        "signal": 0.001992,
+        "histogram": -0.000399,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.08122,
+        "swing_high": 0.10399,
+        "entries": [
+          0.09957,
+          0.09529186,
+          0.092605
+        ],
+        "avg_entry": 0.09582228666666666,
+        "sl": 0.0808139,
+        "tp1": 0.10399,
+        "tp2": 0.11018344,
+        "tp3": 0.11806185999999999,
+        "rr_to_tp1": 0.54,
+        "rr_healthy": false
+      },
+      "categories": [
+        "DeFi"
+      ],
+      "rank_score": 62.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "0G-USDT-SWAP",
+      "price": 0.2046,
+      "key_4h": {
+        "ok": true,
+        "rsi": 35.0,
+        "stoch_k": 12.1,
+        "stoch_d": 13.6,
+        "ema_bull": false,
+        "structure_trend": "down",
+        "last_swing_high": 0.2413,
+        "last_swing_low": 0.2053,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 42.2,
+        "stoch_k": 50.5,
+        "stoch_d": 24.6,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 57.7,
+        "stoch_k": 100.0,
+        "stoch_d": 97.7,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.14,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -4.02,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.007342,
+        "signal": -0.006301,
+        "histogram": -0.001042,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.2004,
+        "swing_high": 0.2543,
+        "entries": [
+          0.2046,
+          0.201531,
+          0.19850803
+        ],
+        "avg_entry": 0.20154634333333332,
+        "sl": 0.199398,
+        "tp1": 0.2543,
+        "tp2": 0.26896080000000006,
+        "tp3": 0.28761020000000004,
+        "rr_to_tp1": 24.56,
+        "rr_healthy": true
+      },
+      "categories": [
+        "L1",
+        "AI"
+      ],
+      "rank_score": 55.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "ACT-USDT-SWAP",
+      "price": 0.008502,
+      "key_4h": {
+        "ok": true,
+        "rsi": 45.4,
+        "stoch_k": 33.5,
+        "stoch_d": 25.0,
+        "ema_bull": false,
+        "structure_trend": "mixed",
+        "last_swing_high": 0.009215,
+        "last_swing_low": 0.008274,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 54.0,
+        "stoch_k": 59.4,
+        "stoch_d": 28.8,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 65.9,
+        "stoch_k": 100.0,
+        "stoch_d": 98.6,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.61,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -3.17,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.000135,
+        "signal": -0.000124,
+        "histogram": -1.1e-05,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.008203,
+        "swing_high": 0.009771,
+        "entries": [
+          0.008502,
+          0.00837447,
+          0.00824885
+        ],
+        "avg_entry": 0.008375106666666667,
+        "sl": 0.008161985,
+        "tp1": 0.009771,
+        "tp2": 0.010197496,
+        "tp3": 0.010740024,
+        "rr_to_tp1": 6.55,
+        "rr_healthy": true
+      },
+      "categories": [
+        "Memecoin"
+      ],
+      "rank_score": 55.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "BONK-USDT-SWAP",
+      "price": 3.03e-06,
+      "key_4h": {
+        "ok": true,
+        "rsi": 47.3,
+        "stoch_k": 28.7,
+        "stoch_d": 22.2,
+        "ema_bull": false,
+        "structure_trend": "down",
+        "last_swing_high": 3.18e-06,
+        "last_swing_low": 2.92e-06,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 51.7,
+        "stoch_k": 73.2,
+        "stoch_d": 41.8,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 63.8,
+        "stoch_k": 100.0,
+        "stoch_d": 100.0,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.19,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -4.82,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.0,
+        "signal": -0.0,
+        "histogram": -0.0,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 2.799e-06,
+        "swing_high": 3.366e-06,
+        "entries": [
+          3.03e-06,
+          3.02e-06,
+          2.92e-06
+        ],
+        "avg_entry": 2.99e-06,
+        "sl": 2.785005e-06,
+        "tp1": 3.366e-06,
+        "tp2": 3.520224e-06,
+        "tp3": 3.7164060000000003e-06,
+        "rr_to_tp1": 1.83,
+        "rr_healthy": true
+      },
+      "categories": [
+        "Memecoin",
+        "Mid-Cap"
+      ],
+      "rank_score": 55.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "BRETT-USDT-SWAP",
+      "price": 0.004678,
+      "key_4h": {
+        "ok": true,
+        "rsi": 44.8,
+        "stoch_k": 49.5,
+        "stoch_d": 47.6,
+        "ema_bull": false,
+        "structure_trend": "mixed",
+        "last_swing_high": 0.004863,
+        "last_swing_low": 0.004618,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 47.3,
+        "stoch_k": 35.3,
+        "stoch_d": 18.0,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 53.3,
+        "stoch_k": 100.0,
+        "stoch_d": 93.3,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.08,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -8.56,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -5e-05,
+        "signal": -3.8e-05,
+        "histogram": -1.2e-05,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.004327,
+        "swing_high": 0.005196,
+        "entries": [
+          0.004678,
+          0.00465896,
+          0.00451297
+        ],
+        "avg_entry": 0.004616643333333333,
+        "sl": 0.004305365,
+        "tp1": 0.005196,
+        "tp2": 0.005432368,
+        "tp3": 0.005733042,
+        "rr_to_tp1": 1.86,
+        "rr_healthy": true
+      },
+      "categories": [
+        "Memecoin"
+      ],
+      "rank_score": 55.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "CP-USDT-SWAP",
+      "price": 0.008795,
+      "key_4h": {
+        "ok": true,
+        "rsi": 43.2,
+        "stoch_k": 4.0,
+        "stoch_d": 2.4,
         "ema_bull": false,
         "structure_trend": "mixed",
         "last_swing_high": 0.011197,
@@ -252,161 +1445,19 @@
       },
       "confirm_1h": {
         "ok": true,
-        "rsi": 42.5,
-        "stoch_k": 38.7,
-        "stoch_d": 47.0,
-        "notes": []
-      },
-      "timing_15m": {
-        "ok": true,
-        "rsi": 49.1,
-        "stoch_k": 85.0,
-        "stoch_d": 67.3,
-        "verdict": "siap masuk"
-      },
-      "volume_4h": {
-        "ratio": 0.17,
-        "rising": false
-      },
-      "open_interest": {
-        "available": true,
-        "change_24h_pct": -10.14,
-        "rising": false
-      },
-      "bullish_divergence_4h": false,
-      "macd_4h": {
-        "bullish": false,
-        "cross_recent": false,
-        "histogram_rising": true,
-        "macd": -0.000105,
-        "signal": 1e-06,
-        "histogram": -0.000107,
-        "bullish_divergence": false
-      },
-      "plan": {
-        "swing_low": 0.00807,
-        "swing_high": 0.011197,
-        "entries": [
-          0.008905,
-          0.00873918,
-          0.00860809
-        ],
-        "avg_entry": 0.008750756666666666,
-        "sl": 0.008029650000000001,
-        "tp1": 0.011197,
-        "tp2": 0.012047544,
-        "tp3": 0.013129486,
-        "rr_to_tp1": 3.39,
-        "rr_healthy": true
-      },
-      "categories": [
-        "AI"
-      ],
-      "rank_score": 65.0
-    },
-    {
-      "exchange": "OKX",
-      "inst_id": "PROS-USDT-SWAP",
-      "price": 0.6237,
-      "key_4h": {
-        "ok": true,
-        "rsi": 46.4,
-        "stoch_k": 11.8,
-        "stoch_d": 11.1,
-        "ema_bull": false,
-        "structure_trend": "mixed",
-        "last_swing_high": 0.7294,
-        "last_swing_low": 0.6142,
-        "reasons": [
-          "StochRSI < 50",
-          "golden cross"
+        "rsi": 42.1,
+        "stoch_k": 50.7,
+        "stoch_d": 27.7,
+        "notes": [
+          "StochRSI bullish"
         ]
       },
-      "confirm_1h": {
-        "ok": true,
-        "rsi": 43.2,
-        "stoch_k": 53.5,
-        "stoch_d": 56.0,
-        "notes": []
-      },
       "timing_15m": {
         "ok": true,
-        "rsi": 46.2,
-        "stoch_k": 83.9,
-        "stoch_d": 66.2,
-        "verdict": "siap masuk"
-      },
-      "volume_4h": {
-        "ratio": 0.07,
-        "rising": false
-      },
-      "open_interest": {
-        "available": true,
-        "change_24h_pct": -2.26,
-        "rising": false
-      },
-      "bullish_divergence_4h": false,
-      "macd_4h": {
-        "bullish": false,
-        "cross_recent": false,
-        "histogram_rising": true,
-        "macd": -0.00115,
-        "signal": 0.002798,
-        "histogram": -0.003949,
-        "bullish_divergence": false
-      },
-      "plan": {
-        "swing_low": 0.5879,
-        "swing_high": 0.7294,
-        "entries": [
-          0.6237,
-          0.618181,
-          0.60890828
-        ],
-        "avg_entry": 0.61692976,
-        "sl": 0.5849605,
-        "tp1": 0.7294,
-        "tp2": 0.7678880000000001,
-        "tp3": 0.8168470000000001,
-        "rr_to_tp1": 3.52,
-        "rr_healthy": true
-      },
-      "categories": [
-        "L1"
-      ],
-      "rank_score": 65.0
-    },
-    {
-      "exchange": "OKX",
-      "inst_id": "ACU-USDT-SWAP",
-      "price": 0.1159,
-      "key_4h": {
-        "ok": true,
-        "rsi": 59.0,
-        "stoch_k": 22.6,
-        "stoch_d": 30.9,
-        "ema_bull": true,
-        "structure_trend": "mixed",
-        "last_swing_high": 0.12196,
-        "last_swing_low": 0.11104,
-        "reasons": [
-          "StochRSI < 50",
-          "golden cross"
-        ]
-      },
-      "confirm_1h": {
-        "ok": true,
-        "rsi": 52.0,
-        "stoch_k": 26.9,
-        "stoch_d": 40.4,
-        "notes": []
-      },
-      "timing_15m": {
-        "ok": true,
-        "rsi": 48.2,
-        "stoch_k": 73.9,
-        "stoch_d": 67.4,
-        "verdict": "siap masuk"
+        "rsi": 53.4,
+        "stoch_k": 100.0,
+        "stoch_d": 95.5,
+        "verdict": "mulai berbelok naik"
       },
       "volume_4h": {
         "ratio": 0.05,
@@ -414,79 +1465,7 @@
       },
       "open_interest": {
         "available": true,
-        "change_24h_pct": -14.67,
-        "rising": false
-      },
-      "bullish_divergence_4h": false,
-      "macd_4h": {
-        "bullish": false,
-        "cross_recent": false,
-        "histogram_rising": false,
-        "macd": 0.003256,
-        "signal": 0.00332,
-        "histogram": -6.4e-05,
-        "bullish_divergence": false
-      },
-      "plan": {
-        "swing_low": 0.09171,
-        "swing_high": 0.12205,
-        "entries": [
-          0.1159,
-          0.11046012,
-          0.10688
-        ],
-        "avg_entry": 0.11108004,
-        "sl": 0.09125145,
-        "tp1": 0.12205,
-        "tp2": 0.13030248,
-        "tp3": 0.14080012,
-        "rr_to_tp1": 0.55,
-        "rr_healthy": false
-      },
-      "categories": [
-        "AI"
-      ],
-      "rank_score": 60.0
-    },
-    {
-      "exchange": "OKX",
-      "inst_id": "AUCTION-USDT-SWAP",
-      "price": 3.345,
-      "key_4h": {
-        "ok": true,
-        "rsi": 42.7,
-        "stoch_k": 21.3,
-        "stoch_d": 21.1,
-        "ema_bull": false,
-        "structure_trend": "mixed",
-        "last_swing_high": 3.629,
-        "last_swing_low": 3.307,
-        "reasons": [
-          "StochRSI < 50",
-          "golden cross"
-        ]
-      },
-      "confirm_1h": {
-        "ok": true,
-        "rsi": 41.6,
-        "stoch_k": 71.1,
-        "stoch_d": 74.3,
-        "notes": []
-      },
-      "timing_15m": {
-        "ok": true,
-        "rsi": 39.5,
-        "stoch_k": 12.3,
-        "stoch_d": 18.7,
-        "verdict": "mulai berbelok naik"
-      },
-      "volume_4h": {
-        "ratio": 0.43,
-        "rising": true
-      },
-      "open_interest": {
-        "available": true,
-        "change_24h_pct": -4.31,
+        "change_24h_pct": -10.72,
         "rising": false
       },
       "bullish_divergence_4h": false,
@@ -494,25 +1473,174 @@
         "bullish": false,
         "cross_recent": false,
         "histogram_rising": true,
-        "macd": -0.026892,
-        "signal": -0.012999,
-        "histogram": -0.013893,
+        "macd": -0.000146,
+        "signal": -3.2e-05,
+        "histogram": -0.000114,
         "bullish_divergence": false
       },
       "plan": {
-        "swing_low": 3.12,
-        "swing_high": 3.629,
+        "swing_low": 0.00807,
+        "swing_high": 0.011197,
         "entries": [
-          3.345,
-          3.314438,
-          3.228926
+          0.008795,
+          0.00873918,
+          0.00860809
         ],
-        "avg_entry": 3.2961213333333332,
-        "sl": 3.1044,
-        "tp1": 3.629,
-        "tp2": 3.767448,
-        "tp3": 3.943562,
-        "rr_to_tp1": 1.74,
+        "avg_entry": 0.00871409,
+        "sl": 0.008029650000000001,
+        "tp1": 0.011197,
+        "tp2": 0.012047544,
+        "tp3": 0.013129486,
+        "rr_to_tp1": 3.63,
+        "rr_healthy": true
+      },
+      "categories": [
+        "AI"
+      ],
+      "rank_score": 55.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "DATA-USDT-SWAP",
+      "price": 0.1436,
+      "key_4h": {
+        "ok": true,
+        "rsi": 40.7,
+        "stoch_k": 18.5,
+        "stoch_d": 25.9,
+        "ema_bull": false,
+        "structure_trend": "mixed",
+        "last_swing_high": 0.1596,
+        "last_swing_low": 0.146,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 40.8,
+        "stoch_k": 16.0,
+        "stoch_d": 12.6,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 44.0,
+        "stoch_k": 81.2,
+        "stoch_d": 74.5,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.13,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -3.93,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": false,
+        "macd": -0.002309,
+        "signal": -0.001922,
+        "histogram": -0.000387,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.1403,
+        "swing_high": 0.1871,
+        "entries": [
+          0.1436,
+          0.141446,
+          0.13932431
+        ],
+        "avg_entry": 0.14145677,
+        "sl": 0.13959850000000001,
+        "tp1": 0.1871,
+        "tp2": 0.1998296,
+        "tp3": 0.21602239999999998,
+        "rr_to_tp1": 24.56,
+        "rr_healthy": true
+      },
+      "categories": [
+        "L1",
+        "AI"
+      ],
+      "rank_score": 55.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "LQTY-USDT-SWAP",
+      "price": 0.1954,
+      "key_4h": {
+        "ok": true,
+        "rsi": 40.2,
+        "stoch_k": 14.1,
+        "stoch_d": 11.0,
+        "ema_bull": false,
+        "structure_trend": "mixed",
+        "last_swing_high": 0.2127,
+        "last_swing_low": 0.193,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 46.4,
+        "stoch_k": 49.4,
+        "stoch_d": 28.7,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 55.3,
+        "stoch_k": 94.9,
+        "stoch_d": 97.4,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.13,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -1.47,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.002623,
+        "signal": -0.001789,
+        "histogram": -0.000834,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.1838,
+        "swing_high": 0.2188,
+        "entries": [
+          0.1954,
+          0.19129,
+          0.18842065
+        ],
+        "avg_entry": 0.19170354999999997,
+        "sl": 0.182881,
+        "tp1": 0.2188,
+        "tp2": 0.22832,
+        "tp3": 0.24043,
+        "rr_to_tp1": 3.07,
         "rr_healthy": true
       },
       "categories": [
@@ -522,17 +1650,17 @@
     },
     {
       "exchange": "OKX",
-      "inst_id": "BARD-USDT-SWAP",
-      "price": 0.1129,
+      "inst_id": "PEPE-USDT-SWAP",
+      "price": 4.3878e-06,
       "key_4h": {
         "ok": true,
-        "rsi": 51.9,
-        "stoch_k": 20.5,
-        "stoch_d": 18.1,
-        "ema_bull": true,
-        "structure_trend": "mixed",
-        "last_swing_high": 0.1202,
-        "last_swing_low": 0.1087,
+        "rsi": 48.2,
+        "stoch_k": 18.5,
+        "stoch_d": 10.7,
+        "ema_bull": false,
+        "structure_trend": "down",
+        "last_swing_high": 4.54e-06,
+        "last_swing_low": 4.23e-06,
         "reasons": [
           "StochRSI < 50",
           "golden cross"
@@ -540,53 +1668,204 @@
       },
       "confirm_1h": {
         "ok": true,
-        "rsi": 50.8,
-        "stoch_k": 66.0,
-        "stoch_d": 65.1,
+        "rsi": 53.3,
+        "stoch_k": 78.5,
+        "stoch_d": 47.0,
         "notes": [
           "StochRSI bullish"
         ]
       },
       "timing_15m": {
         "ok": true,
-        "rsi": 49.1,
-        "stoch_k": 57.5,
-        "stoch_d": 61.4,
+        "rsi": 69.7,
+        "stoch_k": 96.3,
+        "stoch_d": 98.1,
         "verdict": "mulai berbelok naik"
       },
       "volume_4h": {
-        "ratio": 0.06,
+        "ratio": 0.63,
         "rising": false
       },
       "open_interest": {
         "available": true,
-        "change_24h_pct": -3.55,
+        "change_24h_pct": -3.76,
         "rising": false
       },
       "bullish_divergence_4h": false,
       "macd_4h": {
         "bullish": false,
         "cross_recent": false,
-        "histogram_rising": false,
-        "macd": 0.000712,
-        "signal": 0.000881,
-        "histogram": -0.000169,
+        "histogram_rising": true,
+        "macd": -0.0,
+        "signal": -0.0,
+        "histogram": -0.0,
         "bullish_divergence": false
       },
       "plan": {
-        "swing_low": 0.1019,
-        "swing_high": 0.1202,
+        "swing_low": 3.764e-06,
+        "swing_high": 5.111e-06,
         "entries": [
-          0.1129,
-          0.11105,
-          0.1088906
+          4.39e-06,
+          4.28e-06,
+          4.05e-06
         ],
-        "avg_entry": 0.11094686666666666,
-        "sl": 0.10139050000000001,
-        "tp1": 0.1202,
-        "tp2": 0.1251776,
-        "tp3": 0.1315094,
-        "rr_to_tp1": 0.97,
+        "avg_entry": 4.24e-06,
+        "sl": 3.74518e-06,
+        "tp1": 5.111e-06,
+        "tp2": 5.477384e-06,
+        "tp3": 5.943446e-06,
+        "rr_to_tp1": 1.76,
+        "rr_healthy": true
+      },
+      "categories": [
+        "Memecoin",
+        "Mid-Cap"
+      ],
+      "rank_score": 55.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "XLM-USDT-SWAP",
+      "price": 0.1691,
+      "key_4h": {
+        "ok": true,
+        "rsi": 38.2,
+        "stoch_k": 48.3,
+        "stoch_d": 37.4,
+        "ema_bull": false,
+        "structure_trend": "down",
+        "last_swing_high": 0.17239,
+        "last_swing_low": 0.16607,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 50.4,
+        "stoch_k": 65.8,
+        "stoch_d": 39.8,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 62.9,
+        "stoch_k": 100.0,
+        "stoch_d": 100.0,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.52,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -0.14,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.002598,
+        "signal": -0.002494,
+        "histogram": -0.000104,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.16607,
+        "swing_high": 0.18698,
+        "entries": [
+          0.1691,
+          0.1665635,
+          0.16406505
+        ],
+        "avg_entry": 0.16657618333333332,
+        "sl": 0.16523965,
+        "tp1": 0.18698,
+        "tp2": 0.19266752,
+        "tp3": 0.19990238000000002,
+        "rr_to_tp1": 15.27,
+        "rr_healthy": true
+      },
+      "categories": [
+        "RWA",
+        "L1",
+        "Large-Cap"
+      ],
+      "rank_score": 55.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "CVX-USDT-SWAP",
+      "price": 2.43,
+      "key_4h": {
+        "ok": true,
+        "rsi": 51.0,
+        "stoch_k": 30.6,
+        "stoch_d": 37.2,
+        "ema_bull": true,
+        "structure_trend": "down",
+        "last_swing_high": 2.542,
+        "last_swing_low": 2.338,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 48.4,
+        "stoch_k": 24.3,
+        "stoch_d": 11.2,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 54.6,
+        "stoch_k": 100.0,
+        "stoch_d": 99.3,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.3,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -6.59,
+        "rising": false
+      },
+      "bullish_divergence_4h": false,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": 0.018602,
+        "signal": 0.030787,
+        "histogram": -0.012185,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 1.868,
+        "swing_high": 2.716,
+        "entries": [
+          2.43,
+          2.392064,
+          2.292
+        ],
+        "avg_entry": 2.3713546666666665,
+        "sl": 1.8586600000000002,
+        "tp1": 2.716,
+        "tp2": 2.9466560000000004,
+        "tp3": 3.2400640000000003,
+        "rr_to_tp1": 0.67,
         "rr_healthy": false
       },
       "categories": [
@@ -596,17 +1875,17 @@
     },
     {
       "exchange": "OKX",
-      "inst_id": "USDC-USDT-SWAP",
-      "price": 1.00054,
+      "inst_id": "MMT-USDT-SWAP",
+      "price": 0.1382,
       "key_4h": {
         "ok": true,
-        "rsi": 47.6,
-        "stoch_k": 33.1,
-        "stoch_d": 35.0,
+        "rsi": 48.7,
+        "stoch_k": 23.2,
+        "stoch_d": 16.4,
         "ema_bull": false,
-        "structure_trend": "mixed",
-        "last_swing_high": 1.000988,
-        "last_swing_low": 1.000407,
+        "structure_trend": "up",
+        "last_swing_high": 0.1482,
+        "last_swing_low": 0.1359,
         "reasons": [
           "StochRSI < 50",
           "golden cross"
@@ -614,59 +1893,133 @@
       },
       "confirm_1h": {
         "ok": true,
-        "rsi": 44.7,
-        "stoch_k": 73.0,
-        "stoch_d": 69.6,
+        "rsi": 53.3,
+        "stoch_k": 65.5,
+        "stoch_d": 44.9,
         "notes": [
           "StochRSI bullish"
         ]
       },
       "timing_15m": {
         "ok": true,
-        "rsi": 42.2,
-        "stoch_k": 16.1,
-        "stoch_d": 22.5,
+        "rsi": 59.5,
+        "stoch_k": 100.0,
+        "stoch_d": 92.3,
         "verdict": "mulai berbelok naik"
       },
       "volume_4h": {
-        "ratio": 0.32,
+        "ratio": 0.27,
         "rising": false
       },
       "open_interest": {
         "available": true,
-        "change_24h_pct": -0.08,
+        "change_24h_pct": -2.12,
+        "rising": false
+      },
+      "bullish_divergence_4h": true,
+      "macd_4h": {
+        "bullish": false,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.001065,
+        "signal": -0.000721,
+        "histogram": -0.000345,
+        "bullish_divergence": false
+      },
+      "plan": {
+        "swing_low": 0.1253,
+        "swing_high": 0.1495,
+        "entries": [
+          0.1382,
+          0.1374,
+          0.1345444
+        ],
+        "avg_entry": 0.1367148,
+        "sl": 0.12467349999999999,
+        "tp1": 0.1495,
+        "tp2": 0.15608239999999998,
+        "tp3": 0.16445559999999998,
+        "rr_to_tp1": 1.06,
+        "rr_healthy": false
+      },
+      "categories": [
+        "DeFi"
+      ],
+      "rank_score": 45.0
+    },
+    {
+      "exchange": "OKX",
+      "inst_id": "EDEN-USDT-SWAP",
+      "price": 0.05701,
+      "key_4h": {
+        "ok": true,
+        "rsi": 52.4,
+        "stoch_k": 42.4,
+        "stoch_d": 27.1,
+        "ema_bull": false,
+        "structure_trend": "mixed",
+        "last_swing_high": 0.0585,
+        "last_swing_low": 0.05474,
+        "reasons": [
+          "StochRSI < 50",
+          "golden cross"
+        ]
+      },
+      "confirm_1h": {
+        "ok": true,
+        "rsi": 59.1,
+        "stoch_k": 80.1,
+        "stoch_d": 57.2,
+        "notes": [
+          "StochRSI bullish"
+        ]
+      },
+      "timing_15m": {
+        "ok": true,
+        "rsi": 74.6,
+        "stoch_k": 100.0,
+        "stoch_d": 100.0,
+        "verdict": "mulai berbelok naik"
+      },
+      "volume_4h": {
+        "ratio": 0.58,
+        "rising": false
+      },
+      "open_interest": {
+        "available": true,
+        "change_24h_pct": -4.43,
         "rising": false
       },
       "bullish_divergence_4h": false,
       "macd_4h": {
         "bullish": false,
-        "cross_recent": true,
-        "histogram_rising": false,
-        "macd": -1.8e-05,
-        "signal": -1.4e-05,
-        "histogram": -4e-06,
+        "cross_recent": false,
+        "histogram_rising": true,
+        "macd": -0.000291,
+        "signal": -0.000252,
+        "histogram": -3.9e-05,
         "bullish_divergence": false
       },
       "plan": {
-        "swing_low": 1.0,
-        "swing_high": 1.0013,
+        "swing_low": 0.0507,
+        "swing_high": 0.06156,
         "entries": [
-          1.00054,
-          1.0004966,
-          1.0002782
+          0.05701,
+          0.05613,
+          0.05484852
         ],
-        "avg_entry": 1.0004382666666667,
-        "sl": 0.995,
-        "tp1": 1.0013,
-        "tp2": 1.0016536,
-        "tp3": 1.0021034000000002,
-        "rr_to_tp1": 0.16,
+        "avg_entry": 0.05599617333333332,
+        "sl": 0.050446500000000005,
+        "tp1": 0.06156,
+        "tp2": 0.06451392,
+        "tp3": 0.06827148,
+        "rr_to_tp1": 1.0,
         "rr_healthy": false
       },
       "categories": [
-        "Large-Cap"
+        "RWA"
       ],
-      "rank_score": 48.0
+      "rank_score": 40.0
     }
   ]
 }
